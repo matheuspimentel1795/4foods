@@ -1,25 +1,28 @@
 import React from 'react'
-import useForm from '../../hooks/useForm'
-import { sendLogin } from '../../services/user'
+import Button from '@material-ui/core/Button'
+import { ScreenContainer, SignUpButtonContainer } from './styled'
+import LoginForm from './LoginForm'
+import logo from '../../assets/logo-future-eats-red.png'
 
 const Login = () =>{
-    const { input, onChangeInput, cleanFields } = useForm({
-        email:'',
-        password:''
-    })
-    const onSubmitLogin = (event) =>{
-        event.preventDefault()
-        sendLogin(input)
-        cleanFields()
-    }
+
+
     return(
         <div>
-            <h1>Login</h1>
-            <form onSubmit={onSubmitLogin}>
-                <input required value={input.email} name={'email'} onChange={onChangeInput} placeholder='E-mail'/>
-                <input required type='password' value={input.password} name={'password'} onChange={onChangeInput} placeholder='Senha'/>
-                <button>enviar</button>
-            </form>
+           <ScreenContainer>
+               <img src={logo}></img>
+                <h3>Entrar</h3>
+                <LoginForm />
+                <SignUpButtonContainer>
+                    <Button variant="text" color="primary"
+                        type={'submit'}
+                        fullWidth
+                        margin={'normal'}
+                    >
+                    Não possui cadastro? Clique aqui
+                    </Button>
+                </SignUpButtonContainer>
+            </ScreenContainer>
         </div>
     )
 }
