@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../constants/urls'
 
-const useRequestData = (initialData, path, token, setIsLoading) => {
+const useRequestData = (initialData, path, setIsLoading) => {
     
     const [data, setData] = useState(initialData)
 
     const config = {
         method: 'get',
         url: BASE_URL + path,
-        headers: {'Authorization': token },
+        headers: {'auth': localStorage.getItem('token') },
     }
 
     useEffect(() => {
