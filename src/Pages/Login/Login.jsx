@@ -4,9 +4,16 @@ import { ScreenContainer, SignUpButtonContainer } from './styled'
 import LoginForm from './LoginForm'
 import logo from '../../assets/logo-future-eats-red.png'
 import useUnProtected from '../../hooks/useUnprotectedPage'
+import { goToSignUp } from '../../routes/coordinator'
+import { useHistory } from 'react-router-dom'
 
 const Login = () =>{
     useUnProtected()
+    const history = useHistory()
+
+    const goToSignUpPage = () => {
+        goToSignUp(history)
+    }
 
     return(
         <div>
@@ -19,6 +26,7 @@ const Login = () =>{
                         type={'submit'}
                         fullWidth
                         margin={'normal'}
+                        onClick={goToSignUpPage}
                     >
                     Não possui cadastro? Clique aqui
                     </Button>
