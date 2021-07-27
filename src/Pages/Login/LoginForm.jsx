@@ -4,8 +4,10 @@ import Button from '@material-ui/core/Button'
 import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { sendLogin } from '../../services/user'
+import { useHistory } from 'react-router-dom'
 
 const LoginForm = () => {
+    const history = useHistory()
 
     const { input, onChangeInput, cleanFields } = useForm({
         email:'',
@@ -14,8 +16,7 @@ const LoginForm = () => {
     
     const onSubmitLogin = (event) =>{
         event.preventDefault()
-        sendLogin(input)
-        cleanFields()
+        sendLogin(input, history, cleanFields)
     }
 
     return (

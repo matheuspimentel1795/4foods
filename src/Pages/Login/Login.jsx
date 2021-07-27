@@ -3,10 +3,11 @@ import Button from '@material-ui/core/Button'
 import { ScreenContainer, SignUpButtonContainer } from './styled'
 import LoginForm from './LoginForm'
 import logo from '../../assets/logo-future-eats-red.png'
+import useProtectedPage from '../../hooks/useProtectedPage'
 
 const Login = () =>{
-
-
+    useProtectedPage()
+    
     return(
         <div>
            <ScreenContainer>
