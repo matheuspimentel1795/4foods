@@ -1,9 +1,9 @@
 import React  from 'react'
 import useProtectedPage from '../../hooks/useProtectedPage'
 
-const Cart= () =>{
+const Cart= ({setLogged}) =>{
     useProtectedPage()
-
+    setLogged(true)
     return(
         <div>
             Cart

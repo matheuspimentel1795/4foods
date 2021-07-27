@@ -1,5 +1,4 @@
 import axios from 'axios'
-import React  from 'react'
 import { BASE_URL } from '../constants/urls'
 import { goToAdress, goToFeed } from '../routes/coordinator'
 

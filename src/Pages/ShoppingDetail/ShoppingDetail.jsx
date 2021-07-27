@@ -1,9 +1,10 @@
 import React  from 'react'
 import useProtectedPage from '../../hooks/useProtectedPage'
 
-const ShoppingDetail = () =>{
+const ShoppingDetail = ({setLogged}) =>{
     useProtectedPage()
-
+    setLogged(true)
+    
     return(
         <div>
             detalhes
