@@ -5,6 +5,7 @@ import UserAdress from '../../components/UserAdress/UserAdress'
 
 const Profile = ({setLogged}) =>{
     setLogged(true)
+    
     return(
         <div>
             <PersonalData setLogged={setLogged}/>
