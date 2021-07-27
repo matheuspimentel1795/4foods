@@ -1,9 +1,9 @@
 import React  from 'react'
-import useUnProtected from '../../hooks/useUnprotectedPage'
+import useProtectedPage from '../../hooks/useProtectedPage'
 
 const Cart= () =>{
-    useUnProtected()
-    
+    useProtectedPage()
+
     return(
         <div>
             Cart

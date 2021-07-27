@@ -1,8 +1,9 @@
 import React  from 'react'
-import useUnProtected from '../../hooks/useUnprotectedPage'
+import useProtectedPage from '../../hooks/useProtectedPage'
 
 const Feed = () =>{
-    useUnProtected()
+    useProtectedPage()
+
     return(
         <div>
             Feed
