@@ -3,10 +3,10 @@ import { ScreenContainer } from './styled'
 import SignUpform from './SignUpForm'
 import logo from '../../assets/logo-future-eats-red.png'
 import SignUpFormAdress from './SignUpFormAdress'
-import useProtectedPage from '../../hooks/useProtectedPage'
+import useUnProtected from '../../hooks/useUnprotectedPage'
 
 const SignUp = () =>{
-    useProtectedPage()
+    useUnProtected()
 
     return(
         <div>
