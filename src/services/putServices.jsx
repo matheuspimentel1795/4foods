@@ -1,17 +1,20 @@
 import axios from 'axios'
 import { BASE_URL } from '../constants/urls'
+import { goToFeed } from '../routes/coordinator'
 
-export const putAddAdress = (token, body) => {
+export const putAddAdress = ( body,history,cleanFields) => {
     const config = {
         method: 'put',
         url: BASE_URL + "/address",
-        headers: { 'auth': token },
+        headers: { 'auth': localStorage.getItem('token') },
         data: body,
     }
 
     axios(config)
         .then((res) => {
-            return res.data
+            cleanFields()
+            goToFeed(history)
+            localStorage.setItem('token',res.data.token)
         })
         .catch((err) => {
             window.alert(err.response.data.message)

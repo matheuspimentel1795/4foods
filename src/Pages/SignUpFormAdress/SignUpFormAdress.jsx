@@ -3,8 +3,8 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
-import { sendLogin } from '../../services/user'
 import { useHistory } from 'react-router-dom'
+import { putAddAdress } from '../../services/putServices'
 
 const SignUpFormAdress = () => {
     const history = useHistory()
@@ -18,8 +18,9 @@ const SignUpFormAdress = () => {
     })
     
     const onSubmitFormAdress = (event) =>{
+        console.log('oi')
         event.preventDefault()
-        sendLogin(input,history,cleanFields)
+        putAddAdress(input,history,cleanFields)
     }
 
     return (
