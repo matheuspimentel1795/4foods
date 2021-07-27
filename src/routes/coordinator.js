@@ -12,7 +12,12 @@ export const goToRestaurantDetail = (history) =>{
 } 
 export const goToProfile = (history) =>{
     history.push('/perfil')
+}
+
+export const goToEditeProfile = (history, name, email, cpf) =>{
+    history.push(`/perfil/editar/${name}/${email}/${cpf}`)
 } 
+
 export const goToCarr = (history) =>{
     history.push('/carrinho')
 } 
