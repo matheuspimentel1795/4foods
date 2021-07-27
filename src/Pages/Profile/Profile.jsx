@@ -1,9 +1,9 @@
 import React  from 'react'
 import useProtectedPage from '../../hooks/useProtectedPage'
 
-const Profile = () =>{
+const Profile = ({setLogged}) =>{
     useProtectedPage()
-
+    setLogged(true)
     return(
         <div>
             Profile
