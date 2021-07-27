@@ -1,12 +1,13 @@
+import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
-import Login from './Pages/Login/Login';
-import SignUp from './Pages/SignUp/SignUp';
+import theme from './constants/theme';
 import Router from './routes/Router'
+
 const App =() => {
   return (
-    <div >
+    <ThemeProvider theme={theme}>
      <Router/>
-    </div>
+    </ThemeProvider>
   )
 }
 export default App;
