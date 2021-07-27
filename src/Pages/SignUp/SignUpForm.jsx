@@ -3,10 +3,11 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
-import { sendLogin } from '../../services/user'
+import {  sendSignUp } from '../../services/user'
+import { useHistory } from 'react-router-dom'
 
 const SignUpForm = () => {
-
+    const history = useHistory()
     const { input, onChangeInput, cleanFields } = useForm({
         name: '',
         email:'',
@@ -14,17 +15,16 @@ const SignUpForm = () => {
         password:''
     })
     
-    const onSubmitLogin = (event) =>{
+    const onSubmitSignUp = (event) =>{
         event.preventDefault()
-        sendLogin(input)
-        cleanFields()
+        sendSignUp(input,history,cleanFields)
     }
 
     return (
         <div>
             <InputsContainer>
 
-            <form onSubmit={onSubmitLogin}>
+            <form onSubmit={onSubmitSignUp}>
                     <TextField id="outlined-basic" label="Nome" variant="outlined"
                         required 
                         value={input.name} 

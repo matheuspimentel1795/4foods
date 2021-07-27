@@ -11,9 +11,9 @@ const Login = () =>{
     useUnProtected()
     const history = useHistory()
 
-    const goToSignUpPage = () => {
-        goToSignUp(history)
-    }
+    // const goToSignUpPage = () => {
+    //     goToSignUp(history)
+    // }
 
     return(
         <div>
@@ -26,7 +26,7 @@ const Login = () =>{
                         type={'submit'}
                         fullWidth
                         margin={'normal'}
-                        onClick={goToSignUpPage}
+                        onClick={()=>goToSignUp(history)}
                     >
                     Não possui cadastro? Clique aqui
                     </Button>
