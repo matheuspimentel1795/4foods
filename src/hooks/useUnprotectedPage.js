@@ -1,13 +1,15 @@
 import { useEffect } from "react"
 import { useHistory } from "react-router-dom"
+import { goToFeed } from "../routes/coordinator"
 
-
-const useUnprotected = () => {
+const useUnProtected = () => {
     const history = useHistory()
     useEffect(() => {
         const token = localStorage.getItem('token')
         if(token){
-            goToFeedPage(history)
+            goToFeed(history)
         }
     }, [history])
 }
+
+export default useUnProtected
