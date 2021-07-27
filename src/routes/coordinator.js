@@ -16,3 +16,7 @@ export const goToProfile = (history) =>{
 export const goToCarr = (history) =>{
     history.push('/carrinho')
 } 
+
+export const goToAdress = (history) =>{
+    history.push('/cadastro-endereco')
+} 

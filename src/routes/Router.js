@@ -6,6 +6,7 @@ import Login from '../Pages/Login/Login'
 import Profile from '../Pages/Profile/Profile'
 import ShoppingDetail from '../Pages/ShoppingDetail/ShoppingDetail'
 import SignUp from '../Pages/SignUp/SignUp'
+import SignUpFormAdress from '../Pages/SignUpFormAdress/SignUpFormAdress'
 import Splash from '../Pages/Splash/Splash'
 
 const Router = () =>{
@@ -15,6 +16,7 @@ const Router = () =>{
             {/* <Route exact path='/' component ={Splash} /> */}
                 <Route exact path='/' component ={Login} />
                 <Route exact path='/cadastro' component={SignUp}/>
+                <Route exact path='/cadastro-endereco' component={SignUpFormAdress}/>
                 <Route exact path='/restaurantes' component={Feed} />
                 <Route exact path='/detalhes-restaurante' component={ShoppingDetail} />
                 <Route exact path='/perfil' component={Profile}/>

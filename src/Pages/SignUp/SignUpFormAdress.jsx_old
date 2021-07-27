@@ -5,7 +5,7 @@ import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { sendLogin } from '../../services/user'
 
-const SignUpFormAdress = () => {
+const SignUpFormAdressOld = () => {
 
     const { input, onChangeInput, cleanFields } = useForm({
         street:'',
@@ -93,4 +93,4 @@ const SignUpFormAdress = () => {
     )
 }
 
-export default SignUpFormAdress
+export default SignUpFormAdressOld
