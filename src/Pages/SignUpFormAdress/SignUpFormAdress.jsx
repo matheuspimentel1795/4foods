@@ -20,7 +20,6 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
     })
     
     const onSubmitFormAdress = (event) =>{
-        console.log('oi')
         event.preventDefault()
         putAddAdress(input,history,cleanFields)
     }
