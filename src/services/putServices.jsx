@@ -12,9 +12,9 @@ export const putAddAdress = ( body,history,cleanFields) => {
 
     axios(config)
         .then((res) => {
-            cleanFields()
-            goToFeed(history)
             localStorage.setItem('token',res.data.token)
+            goToFeed(history)
+            cleanFields()
         })
         .catch((err) => {
             window.alert(err.response.data.message)
