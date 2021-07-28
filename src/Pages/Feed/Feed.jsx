@@ -4,8 +4,8 @@ import useProtectedPage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
 import Loading from '../../components/Loading/Loading'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
-import { Container, ContainerList } from './style'
-import { OutlinedInput } from '@material-ui/core'
+import { Container, ContainerCategories, ContainerList } from './style'
+import { OutlinedInput, Typography } from '@material-ui/core'
 import { goToFeedSearch } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
 
@@ -26,7 +26,7 @@ const Feed = ({ setLogged }) => {
 
     const displayList = list.restaurants?.map((item) => {
         if (!selectedCategory.active) {
-            return <RestaurantCard item={item} />
+            return <RestaurantCard key={item.id} item={item} />
         } else {
             if (selectedCategory.category === item.category) {
                 return <RestaurantCard item={item} />
@@ -36,15 +36,27 @@ const Feed = ({ setLogged }) => {
 
     const onClickCategory = (categoryName) => {
         setSelectedCategory({
-            active: selectedCategory.category===categoryName ? false : true,
-            category: categoryName
+            active: selectedCategory.category === categoryName ? false : true,
+            category: selectedCategory.category === categoryName ? "false" : categoryName,
         })
     }
 
-    const displayCategories = list.restaurants?.map((item) => {
-        return <li
-        onClick={()=>onClickCategory(item.category)}
-        >{item.category}</li>
+    const categories = []
+
+    const filterCat = list.restaurants?.map((item) => { return item.category })
+        .sort((a, b) => { return a.localeCompare(b) })
+        .forEach((item, index, array) => {
+            if (item !== array[index + 1] || item === array[index - 1]) {
+                return categories.push(item)
+            }
+        })
+
+    const displayCategories = categories?.map((item, index) => {
+        return <Typography key={index}
+            onClick={() => onClickCategory(item)}
+            color={item === selectedCategory.category ? "secondary" : "textPrimary"}>
+            {item}</Typography>
+
     })
 
     return (
@@ -53,7 +65,9 @@ const Feed = ({ setLogged }) => {
             <OutlinedInput
                 onClick={() => goToFeedSearch(history)}
             />
-            <>{displayCategories}</>
+            <ContainerCategories>
+                {displayCategories}
+            </ContainerCategories>
             <ContainerList>
                 {displayList ? displayList : <Loading />}
             </ContainerList>
