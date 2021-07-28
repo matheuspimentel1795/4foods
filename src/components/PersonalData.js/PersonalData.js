@@ -4,6 +4,7 @@ import useRequestData from '../../hooks/useRequestData'
 import editPen from '../../assets/editPen.png'
 import {goToEditeProfile} from '../../routes/coordinator'
 import { useHistory } from 'react-router'
+import {ContainerPersonalData} from './styled'
 
 
 const PersonalData = () => {
@@ -13,18 +14,20 @@ const PersonalData = () => {
 
     const data = useRequestData([], "/profile", setIsLoading)
     return(
-        <div>
+        <ContainerPersonalData>
             {data.user ? <div>
-                <div>
+                <div id={"name"}>
+                    <div>
                     <p>{data.user.name}</p>
+                    <p>{data.user.email}</p>
+                    <p>{data.user.cpf}</p>
+                    </div>
                     <img src={editPen} alt={"Caneta de editar"} onClick={() => goToEditeProfile(history,data.user.name, data.user.email, data.user.cpf)}/>
                 </div>
-                <p>{data.user.email}</p>
-                <p>{data.user.cpf}</p>
             </div>: <></>}
             
 
-        </div>
+        </ContainerPersonalData>
     )
 }
 
