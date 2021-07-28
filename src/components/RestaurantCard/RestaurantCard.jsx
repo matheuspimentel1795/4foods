@@ -20,7 +20,7 @@ export default function RestaurantCard({ item }) {
                 <Typography color="secondary">{name}</Typography>
             </ContainerRow>
             <ContainerRow>
-                <Typography color="textPrimary">{deliveryTime} min</Typography>
+                <Typography color="textPrimary">{Math.floor(deliveryTime*0.9)} - {deliveryTime} min</Typography>
                 <Typography>Frete R${Number(shipping).toFixed(2).toLocaleString('pt-br')}</Typography>
             </ContainerRow>
         </Container>
