@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Footer from '../components/Footer/Footer'
 import Cart from '../Pages/Cart/Cart'
+import EditeProfile from '../Pages/EditeProfile/EditeProfile'
 import Feed from '../Pages/Feed/Feed'
 import Login from '../Pages/Login/Login'
 import Profile from '../Pages/Profile/Profile'
@@ -13,7 +14,6 @@ import FeedSearch from '../Pages/FeedSearch/FeedSearch'
 
 const Router = () => {
     const [logged, setLogged] = useState(false)
-    console.log(logged)
 
     return (
         <BrowserRouter>
