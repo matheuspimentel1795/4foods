@@ -6,8 +6,10 @@ import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
 
-const SignUpFormAdress = () => {
+const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
     const history = useHistory()
+    setLogged(false)
+    changeInfoHeader("Endereço")
     const { input, onChangeInput, cleanFields } = useForm({
         street:'',
         number:'',

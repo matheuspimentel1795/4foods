@@ -5,7 +5,8 @@ import logo from '../../assets/logo-future-eats-red.png'
 import useProtectedPage from '../../hooks/useProtectedPage'
 import SignUpFormAdress from '../SignUpFormAdress/SignUpFormAdress'
 
-const SignUp = () =>{
+const SignUp = ({changeInfoHeader}) =>{
+    changeInfoHeader("")
     /*useProtectedPage()*/
     
     return(

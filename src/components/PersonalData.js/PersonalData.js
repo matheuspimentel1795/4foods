@@ -8,7 +8,6 @@ import { useHistory } from 'react-router'
 
 const PersonalData = () => {
     useProtectedPage()
-
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
 
