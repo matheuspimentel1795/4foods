@@ -9,9 +9,10 @@ import { OutlinedInput, Typography } from '@material-ui/core'
 import { goToFeedSearch } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
 
-const Feed = ({ setLogged }) => {
+const Feed = ({ setLogged, changeInfoHeader }) => {
     useProtectedPage()
     setLogged(true)
+    changeInfoHeader("Ifuture")
 
     const [restaurantList, setRestaurantList] = useState()
     const [isLoading, setIsLoading] = useState(false)

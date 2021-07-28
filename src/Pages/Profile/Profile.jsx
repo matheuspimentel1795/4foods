@@ -1,12 +1,17 @@
-import React  from 'react'
-import useProtectedPage from '../../hooks/useProtectedPage'
+import React from 'react'
+import OrdersHistory from '../../components/OrdersHistory/OrdersHistory'
+import PersonalData from '../../components/PersonalData.js/PersonalData'
+import UserAdress from '../../components/UserAdress/UserAdress'
 
-const Profile = ({setLogged}) =>{
-    useProtectedPage()
+const Profile = ({setLogged, changeInfoHeader}) =>{
     setLogged(true)
+    changeInfoHeader("Meu Perfil")
+    
     return(
         <div>
-            Profile
+            <PersonalData setLogged={setLogged} />
+            <UserAdress />
+            <OrdersHistory/>
         </div>
     )
 }

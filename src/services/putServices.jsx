@@ -22,17 +22,17 @@ export const putAddAdress = ( body,history,cleanFields) => {
 
 }
 
-export const putUpdateProfile = (token, body) => {
+export const putUpdateProfile = (body) => {
     const config = {
         method: 'put',
         url: BASE_URL + "/profile",
-        headers: { 'auth': token },
+        headers: { 'auth': localStorage.getItem('token') },
         data: body,
     }
 
     axios(config)
         .then((res) => {
-            return res.data
+            window.alert("Dados do Perfil atualizado com sucesso")
         })
         .catch((err) => {
             window.alert(err.response.data.message)
