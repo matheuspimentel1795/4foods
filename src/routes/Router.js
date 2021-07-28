@@ -15,7 +15,6 @@ import FeedSearch from '../Pages/FeedSearch/FeedSearch'
 
 const Router = () => {
     const [logged, setLogged] = useState(false)
-    const token = localStorage.getItem('token')
     const [infoHeader, setInfoHeader] = useState("")
 
     const changeInfoHeader = (info) => {
