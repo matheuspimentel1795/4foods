@@ -13,7 +13,7 @@ const Header = ({infoHeader}) => {
     return(
         <ContainerHeader>
             {infoHeader=== "Endereço" || infoHeader==="Editar" || infoHeader=== "Cadastrar" ? <img src={back} alt={"Botão Voltar"} onClick={goBackPage}/>: <div></div>}
-            <p>{infoHeader}</p>
+            {infoHeader === "" || infoHeader === "Cadastrar" ? <p></p> : <p>{infoHeader}</p>}
             <div></div>
         </ContainerHeader>
     )

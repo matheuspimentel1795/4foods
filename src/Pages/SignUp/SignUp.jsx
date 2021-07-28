@@ -6,7 +6,7 @@ import useProtectedPage from '../../hooks/useProtectedPage'
 import SignUpFormAdress from '../SignUpFormAdress/SignUpFormAdress'
 
 const SignUp = ({changeInfoHeader}) =>{
-    changeInfoHeader("")
+    changeInfoHeader("Cadastrar")
     /*useProtectedPage()*/
     
     return(
