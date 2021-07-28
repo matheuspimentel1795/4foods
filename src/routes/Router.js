@@ -24,7 +24,8 @@ const Router = () => {
                 <Route exact path='/cadastro-endereco' component={SignUpFormAdress} />
                 <Route exact path='/restaurantes' component={() => <Feed setLogged={setLogged} />} />
                 <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail setLogged={setLogged} />} />
-                <Route exact path='/perfil' component={() => <Profile setLogged={setLogged} />} />
+                <Route exact path='/perfil' component={() => <Profile setLogged={setLogged}/>}/>
+                <Route exact path='/perfil/editar/:name?/:email?/:cpf?' component={EditeProfile}/>            
                 <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged} />} />
                 <Route exact path='/restaurantes/busca' component={() => <FeedSearch setLogged={setLogged} />} />
             </Switch>
