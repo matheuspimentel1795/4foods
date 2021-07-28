@@ -22,5 +22,13 @@ export const ContainerList = styled.div`
         align-items: center;
         justify-content: flex-start;
     }
+`
 
+export const ContainerCategories = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    width: 100%;
+    overflow: scroll;
 `
