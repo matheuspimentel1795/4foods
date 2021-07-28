@@ -5,9 +5,13 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     width: 20%;
+    margin-bottom: 2%;
     border: 1px solid lightgray;
     border-radius: 10px;
     overflow: hidden;
+    :focus,:hover{
+        cursor: pointer;
+    }
     @media(max-device-width: 414px){
         width: 98%;
     }
@@ -16,6 +20,7 @@ export const Container = styled.div`
 export const RestaurantImage = styled.img`
     width: 100%;
     height: 10em;
+    margin: 0 0 2% 0;
     object-fit: contain;
     overflow: hidden;
     /* #bg{

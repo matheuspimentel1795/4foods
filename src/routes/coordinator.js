@@ -7,8 +7,8 @@ export const goToSignUp = (history) =>{
 export const goToFeed = (history) =>{
     history.push('/restaurantes')
 } 
-export const goToRestaurantDetail = (history) =>{
-    history.push('/detalhes-restaurante')
+export const goToRestaurantDetail = (history,id) =>{
+    history.push(`/detalhes-restaurante/${id}`)
 } 
 export const goToProfile = (history) =>{
     history.push('/perfil')
@@ -24,4 +24,8 @@ export const goToCarr = (history) =>{
 
 export const goToAdress = (history) =>{
     history.push('/cadastro-endereco')
-} 
+}
+
+export const goToFeedSearch = (history) =>{
+    history.push('/restaurantes/busca')
+}  
