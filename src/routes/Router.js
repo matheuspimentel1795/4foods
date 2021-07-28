@@ -9,24 +9,26 @@ import ShoppingDetail from '../Pages/ShoppingDetail/ShoppingDetail'
 import SignUp from '../Pages/SignUp/SignUp'
 import SignUpFormAdress from '../Pages/SignUpFormAdress/SignUpFormAdress'
 import Splash from '../Pages/Splash/Splash'
+import FeedSearch from '../Pages/FeedSearch/FeedSearch'
 
-const Router = () =>{
+const Router = () => {
     const [logged, setLogged] = useState(false)
     console.log(logged)
 
-    return(
+    return (
         <BrowserRouter>
             <Switch>
-            {/* <Route exact path='/' component ={Splash} /> */}
-                <Route exact path='/' component ={() => <Login setLogged={setLogged}/>} />
-                <Route exact path='/cadastro' component={SignUp}/>
-                <Route exact path='/cadastro-endereco' component={SignUpFormAdress}/>
-                <Route exact path='/restaurantes' component={() => <Feed setLogged={setLogged}/>} />
-                <Route exact path='/detalhes-restaurante' component={() => <ShoppingDetail setLogged={setLogged}/>}/>
-                <Route exact path='/perfil' component={() => <Profile setLogged={setLogged}/>}/>
-                <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged}/>}/>
+                {/* <Route exact path='/' component ={Splash} /> */}
+                <Route exact path='/' component={() => <Login setLogged={setLogged} />} />
+                <Route exact path='/cadastro' component={SignUp} />
+                <Route exact path='/cadastro-endereco' component={SignUpFormAdress} />
+                <Route exact path='/restaurantes' component={() => <Feed setLogged={setLogged} />} />
+                <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail setLogged={setLogged} />} />
+                <Route exact path='/perfil' component={() => <Profile setLogged={setLogged} />} />
+                <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged} />} />
+                <Route exact path='/restaurantes/busca' component={() => <FeedSearch setLogged={setLogged} />} />
             </Switch>
-            {logged ? <Footer/>: <></>}
+            {logged ? <Footer /> : <></>}
         </BrowserRouter>
     )
 }
