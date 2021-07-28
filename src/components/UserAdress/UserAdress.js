@@ -15,17 +15,17 @@ const UserAdress = () =>{
     const data = useRequestData([], "/profile/address", setIsLoading)
 
     return(
-        <ContainerAdress>
-            {data.address ? <div>
-                <p id={"title"}>Endereço cadastrado</p>
+        <div>
+            {data.address ? <ContainerAdress>
                 <div id={"adress"}>
+                    <p id={"title"}>Endereço cadastrado</p>
                     <p>{`${data.address.street}, ${data.address.number}, ${data.address.complement} ${data.address.neighbourhood} 
                     ${data.address.city}-${data.address.state} `}</p>
-                    <img src={editPen} alt={"Caneta de editar"} onClick={() => goToAdress(history)}/>
                 </div>
-            </div>: <></>}
+                    <img src={editPen} alt={"Caneta de editar"} onClick={() => goToAdress(history)}/>
+            </ContainerAdress>: <></>}
 
-        </ContainerAdress>
+        </div>
     )
 }
 
