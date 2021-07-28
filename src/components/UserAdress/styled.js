@@ -2,26 +2,26 @@ import styled from 'styled-components'
 import { backgroundColorAdress, textColor } from '../../constants/colors'
 
 export const ContainerAdress = styled.div`
-    display: flex;
-    justify-content: start;
-    flex-direction: column;
-    background-color: ${backgroundColorAdress};
-    padding: 5px;
 
-    #title{
-        color: ${textColor};
-    }
+    display: flex;
+    /* justify-content: start; */
+    justify-content: space-between;
+    padding: 5px;
+    background-color: ${backgroundColorAdress};
 
     #adress{
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
         align-self: flex-start;
         
-        img{
-            width: 24px;
-            height: 24px;
+        #title{
+            color: ${textColor};
         }
+    }
+    img{
+        width: 24px;
+        height: 24px;
+        align-self: center;
     }
 
 `

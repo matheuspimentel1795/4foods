@@ -15,7 +15,7 @@ export const ContainerCardOrder = styled.div`
     border-radius: 8px;
     width: 20.5rem;
     /* height: 7.375rem; */
-    margin: 0.438rem 0 0;
+    margin: 0.438rem;
 
     #nameRestaurant{
         font-size: 1rem;

@@ -18,9 +18,9 @@ const PersonalData = () => {
             {data.user ? <div>
                 <div id={"name"}>
                     <div>
-                    <p>{data.user.name}</p>
-                    <p>{data.user.email}</p>
-                    <p>{data.user.cpf}</p>
+                        <p>{data.user.name}</p>
+                        <p>{data.user.email}</p>
+                        <p>{data.user.cpf}</p>
                     </div>
                     <img src={editPen} alt={"Caneta de editar"} onClick={() => goToEditeProfile(history,data.user.name, data.user.email, data.user.cpf)}/>
                 </div>
