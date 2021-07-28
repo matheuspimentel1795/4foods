@@ -14,12 +14,37 @@ const Footer = () => {
     const [iconHomePage, setIconHomePage] =  useState(homepageRed)
     const [iconShoppingCard, setIconShoppingCard] =  useState(shoppingCartWhite)
     const [iconAvatar, setIconAvatar] = useState(avatarWhite)
+    
+    const changeIcon = (page) => {
+        switch(page){
+            case "Home":
+                setIconHomePage(homepageRed)
+                setIconShoppingCard(shoppingCartWhite)
+                setIconAvatar(avatarWhite)
+                break;
+            case "Carrinho":
+                setIconHomePage(homepageWhite)
+                setIconShoppingCard(shoppingCartRed)
+                setIconAvatar(avatarWhite)
+                break;
+            case "Perfil":
+                setIconHomePage(homepageWhite)
+                setIconShoppingCard(shoppingCartWhite)
+                setIconAvatar(avatarRed)
+                break;
+            default:
+                setIconHomePage(homepageRed)
+                setIconShoppingCard(shoppingCartWhite)
+                setIconAvatar(avatarWhite)
+                break;
+        }
+    }
 
     return(
         <ContainerFooter>
-            <img src={iconHomePage} alt={"Icone Página Inicial"} onClick={() =>goToFeed(history)}/>
-            <img src={iconShoppingCard} alt={"Icone Carrinho"} onClick={() =>goToCarr(history)}/>
-            <img src={iconAvatar} alt={"Icone Perfil"} onClick={() =>goToProfile(history)}/>
+            <img src={iconHomePage} alt={"Icone Página Inicial"} onClick={() =>{changeIcon("Home"); goToFeed(history)}}/>
+            <img src={iconShoppingCard} alt={"Icone Carrinho"} onClick={ () =>{changeIcon("Carrinho"); goToCarr(history)}}/>
+            <img src={iconAvatar} alt={"Icone Perfil"} onClick={() =>{changeIcon("Perfil"); goToProfile(history)}}/>
         </ContainerFooter>
     )
 }

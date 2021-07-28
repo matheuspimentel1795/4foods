@@ -6,8 +6,10 @@ import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { putUpdateProfile } from '../../services/putServices'
 
-const EditeProfile = () => {
+const EditeProfile = ({setLogged, changeInfoHeader}) => {
     const params = useParams()
+    setLogged(false)
+    changeInfoHeader("Editar")
 
     const { input, onChangeInput, cleanFields } = useForm({
         name: params.name,

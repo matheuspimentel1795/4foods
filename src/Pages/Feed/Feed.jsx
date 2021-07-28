@@ -6,9 +6,10 @@ import Loading from '../../components/Loading/Loading'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
 import { Container, ContainerList } from './style'
 
-const Feed = ({ setLogged }) => {
+const Feed = ({ setLogged, changeInfoHeader }) => {
     useProtectedPage()
     setLogged(true)
+    changeInfoHeader("Ifuture")
 
     const [restaurantList, setRestaurantList] = useState()
     const [isLoading, setIsLoading] = useState(false)

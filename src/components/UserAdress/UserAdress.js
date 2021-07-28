@@ -6,7 +6,6 @@ import { goToAdress } from '../../routes/coordinator'
 import editPen from '../../assets/editPen.png'
 
 const UserAdress = () =>{
-
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
 
@@ -23,7 +22,6 @@ const UserAdress = () =>{
                     <img src={editPen} alt={"Caneta de editar"} onClick={() => goToAdress(history)}/>
                 </div>
             </div>: <></>}
-            
 
         </div>
     )
