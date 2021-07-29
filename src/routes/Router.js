@@ -15,7 +15,7 @@ import {
     EditAddress, 
     Splash, 
     FeedSearch
-} from '../Pages/pages'
+} from '../Pages/export'
 
 const Router = () => {
     const [logged, setLogged] = useState(false)
