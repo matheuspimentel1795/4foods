@@ -5,7 +5,14 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
+    .search-box{
+        width: 20%;
+    }
+    @media(max-device-width: 414px){
+        .search-box{
+           width: 96%;
+        }  
+    }
 `
 
 export const ContainerList = styled.div`
@@ -20,9 +27,8 @@ export const ContainerList = styled.div`
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: flex-start;   
     }
-
 `
 
 export const ContainerRow = styled.div`
@@ -31,11 +37,17 @@ export const ContainerRow = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 0 5%;
-    button{
-      
-    }
     @media(max-device-width: 414px){
         width: 100%;
+    }
+`
+export const ContainerTop = styled.div`
+width: 100%;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+justify-items: center;
+align-items: center;
+button{
+     justify-self:left;
     }
 `

@@ -4,14 +4,14 @@ import useProtectedPage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
 import Loading from '../../components/Loading/Loading'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
-import { Container, ContainerList, ContainerRow } from './style'
-import { Input, OutlinedInput, Typography } from '@material-ui/core'
+import { Container, ContainerList, ContainerRow, ContainerTop } from './style'
+import { OutlinedInput, Typography } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+
 
 const FeedSearch = ({ setLogged }) => {
     useProtectedPage()
@@ -40,21 +40,26 @@ const FeedSearch = ({ setLogged }) => {
 
     return (
         <Container>
-            <ContainerRow>
+            <ContainerTop>
                 <IconButton>
-                    <ArrowBackIosIcon onClick={() => history.goBack()} />
+                    <ArrowBackIosIcon
+                    onClick={() => history.goBack()}
+                    style={{ color: '#000000'}}/>
                 </IconButton>
                 <Typography>Busca</Typography>
-                <></>
-            </ContainerRow>
+            </ContainerTop>
             <OutlinedInput
+                className={"search-box"}
                 type="text"
                 onChange={onChangeInput}
                 value={input.search}
                 name={"search"}
                 inputProps={{ 'aria-label': 'search' }}
                 placeholder={"  Restaurante"}
-                startAdornment={<SearchIcon style={{ color: '#808080'}}/>}
+                style={{marginBottom:'2%'}}          
+                startAdornment={<SearchIcon 
+                    style={{ color: '#808080', marginRight:'5%'}}
+                    />}
             />
             <ContainerList>
                 {isLoading ? <Loading /> : renderResult ? renderResult : <Typography>busque por nome de restaurante</Typography>}
