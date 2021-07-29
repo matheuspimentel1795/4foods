@@ -10,6 +10,8 @@ import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
 
 const FeedSearch = ({ setLogged }) => {
     useProtectedPage()
@@ -33,7 +35,7 @@ const FeedSearch = ({ setLogged }) => {
     const renderResult = input.search && searchResult.length > 0 ? searchResult?.map((item) => {
         return <RestaurantCard item={item} />
 
-    }) : input.search && !searchResult.length && <p>item não encontrado</p>
+    }) : input.search && !searchResult.length && <p>Não encontramos :(</p>
 
 
     return (
@@ -50,7 +52,9 @@ const FeedSearch = ({ setLogged }) => {
                 onChange={onChangeInput}
                 value={input.search}
                 name={"search"}
-                placeholder={"Restaurante"}
+                inputProps={{ 'aria-label': 'search' }}
+                placeholder={"  Restaurante"}
+                startAdornment={<SearchIcon style={{ color: '#808080'}}/>}
             />
             <ContainerList>
                 {isLoading ? <Loading /> : renderResult ? renderResult : <Typography>busque por nome de restaurante</Typography>}
