@@ -43,7 +43,7 @@ const Router = () => {
                 <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/restaurantes/busca' component={() => <FeedSearch setLogged={setLogged} />} />
             </Switch>
-            {logged ? <Footer infoHeader={infoHeader}/>: <></>}
+            {logged && <Footer infoHeader={infoHeader}/>}
         </BrowserRouter>
     )
 }

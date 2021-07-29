@@ -9,12 +9,9 @@ const GlobalState = (props) =>{
     }
 
     const [cart,setCart] = useState([])
-    console.log('carrrinho global state', cart)
 
     const ativeOrder = useRequestData({}, "/active-order")
     const address = useRequestData({}, `/profile/address`)
-
-    console.log(ativeOrder)
     
     return(
         <GlobalStateContext.Provider value={{ cart,setCart, address, ativeOrder}}>
