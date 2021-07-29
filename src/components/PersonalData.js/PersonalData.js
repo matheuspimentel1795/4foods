@@ -12,7 +12,7 @@ const PersonalData = () => {
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
 
-    const data = useRequestData([], "/profile", setIsLoading)
+    const data = useRequestData([], "/profile")
     return(
         <ContainerPersonalData>
             {data.user ? <div>

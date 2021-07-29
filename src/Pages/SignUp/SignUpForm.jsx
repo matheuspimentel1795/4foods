@@ -50,6 +50,7 @@ const SignUpForm = () => {
                         name={'cpf'} 
                         onChange={onChangeInput} 
                         placeholder='000.000.000-0'
+                        inputProps={{pattern:"([0-9]{2}[.]?[0-9]{3}[.[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.][0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})",}}
                         margin={'normal'}
                         fullWidth
                     />
