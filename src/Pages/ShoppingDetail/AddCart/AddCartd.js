@@ -1,5 +1,6 @@
 import Select from '@material-ui/core/Select';
 import React, { useContext, useEffect, useState } from "react";
+
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -10,11 +11,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import CloseIcon from "@material-ui/icons/Close";
 import { IconButton } from "@material-ui/core";
-import styled from "styled-components";
 import DialogTitle from "@material-ui/core/DialogTitle";
+
 import { GlobalStateContext } from '../../../global/GlobalStateContext'
 import MyButton from './buttonStyled'
-
+import styled from "styled-components";
 
 
 const ButtonContainer = styled.div`
@@ -70,10 +71,10 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
     <div>
       <ButtonContainer>
         {cardExist ? 
-          <MyButton variant="outlined" color="black" onClick={removeCart} add={true}> REMOVER</MyButton>
-        : <MyButton variant="outlined" color="black" onClick={popUpClickOpen}> ADICIONAR </MyButton>} 
+          <MyButton variant="outlined" color="primary" onClick={removeCart} add={true}> REMOVER</MyButton>
+        : <MyButton variant="outlined" color="primary" onClick={popUpClickOpen}> ADICIONAR </MyButton>} 
       </ButtonContainer>
-      <Dialog
+      {/* <Dialog
         open={open}
         onClose={popUpClose}
         aria-labelledby="alert-dialog-title"
@@ -87,19 +88,19 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
         <DialogTitle id="alert-dialog-title">
               {"Selecione a quantidade desejada"}
         </DialogTitle>
-        <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="outlined-age-native-simple">
+        <DialogContent> */}
+            {/* <DialogContentText id="alert-dialog-description"> */}
+              {/* <FormControl fullWidth variant="outlined"> */}
+                {/* <InputLabel htmlFor="outlined-age-native-simple">
                   Quantidade
-                </InputLabel>
-                <Select
+                </InputLabel> */}
+                {/* <Select
                   required
                   onChange={onChangeQuant}
                   value={quant}
                   label="Quantidade"
-                >
-                  <MenuItem value={1}>1</MenuItem>
+                > */}
+                  {/* <MenuItem value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
                   <MenuItem value={3}>3</MenuItem>
                   <MenuItem value={4}>4</MenuItem>
@@ -113,17 +114,17 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
                   <MenuItem value={12}>12</MenuItem>
                   <MenuItem value={13}>13</MenuItem>
                   <MenuItem value={14}>14</MenuItem>
-                  <MenuItem value={15}>15</MenuItem>
-                </Select>
-              </FormControl>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button  color="#4F81A8" onClick={addToCart} autoFocus>
+                  <MenuItem value={15}>15</MenuItem> */}
+                {/* </Select> */}
+              {/* </FormControl> */}
+            {/* </DialogContentText> */}
+          {/* </DialogContent> */}
+          {/* <DialogActions>
+            <Button  color="primary" onClick={addToCart} autoFocus>
               ADICIONAR AO CARRINHO
             </Button>
           </DialogActions>
-      </Dialog>
+      </Dialog> */}
   </div>
   )
 }
