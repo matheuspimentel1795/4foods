@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@material-ui/core';
-import React from 'react';
+import React, {useState} from 'react';
 import theme from './constants/theme';
 import GlobalState from './global/GlobalState';
 import Router from './routes/Router'
@@ -8,7 +8,7 @@ const App =() => {
   return (
     <GlobalState>
     <ThemeProvider theme={theme}>
-     <Router/>
+     <Router logged={logged} setLogged={setLogged} infoHeader={infoHeader} setInfoHeader={setInfoHeader} changeInfoHeader={changeInfoHeader}/>
     </ThemeProvider>
     </GlobalState>
   )
