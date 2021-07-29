@@ -16,6 +16,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { GlobalStateContext } from '../../../global/GlobalStateContext'
 import MyButton from './buttonStyled'
 import styled from "styled-components";
+import { OpenInNewOutlined, OpenInNewRounded } from '@material-ui/icons';
 
 
 const ButtonContainer = styled.div`
@@ -74,7 +75,7 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
           <MyButton variant="outlined" color="primary" onClick={removeCart} add={true}> REMOVER</MyButton>
         : <MyButton variant="outlined" color="primary" onClick={popUpClickOpen}> ADICIONAR </MyButton>} 
       </ButtonContainer>
-      {/* <Dialog
+      <Dialog
         open={open}
         onClose={popUpClose}
         aria-labelledby="alert-dialog-title"
@@ -88,19 +89,19 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
         <DialogTitle id="alert-dialog-title">
               {"Selecione a quantidade desejada"}
         </DialogTitle>
-        <DialogContent> */}
-            {/* <DialogContentText id="alert-dialog-description"> */}
-              {/* <FormControl fullWidth variant="outlined"> */}
-                {/* <InputLabel htmlFor="outlined-age-native-simple">
+        <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              <FormControl fullWidth variant="outlined">
+                <InputLabel htmlFor="outlined-age-native-simple">
                   Quantidade
-                </InputLabel> */}
-                {/* <Select
+                </InputLabel>
+                <Select
                   required
                   onChange={onChangeQuant}
                   value={quant}
                   label="Quantidade"
-                > */}
-                  {/* <MenuItem value={1}>1</MenuItem>
+                >
+                  <MenuItem value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
                   <MenuItem value={3}>3</MenuItem>
                   <MenuItem value={4}>4</MenuItem>
@@ -114,17 +115,17 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
                   <MenuItem value={12}>12</MenuItem>
                   <MenuItem value={13}>13</MenuItem>
                   <MenuItem value={14}>14</MenuItem>
-                  <MenuItem value={15}>15</MenuItem> */}
-                {/* </Select> */}
-              {/* </FormControl> */}
-            {/* </DialogContentText> */}
-          {/* </DialogContent> */}
-          {/* <DialogActions>
+                  <MenuItem value={15}>15</MenuItem>
+                </Select>
+              </FormControl>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
             <Button  color="primary" onClick={addToCart} autoFocus>
               ADICIONAR AO CARRINHO
             </Button>
           </DialogActions>
-      </Dialog> */}
+      </Dialog>
   </div>
   )
 }
