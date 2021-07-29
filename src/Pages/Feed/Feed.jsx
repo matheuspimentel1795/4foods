@@ -8,6 +8,9 @@ import { Container, ContainerCategories, ContainerList } from './style'
 import { OutlinedInput, Typography } from '@material-ui/core'
 import { goToFeedSearch } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
+import { IconButton } from '@material-ui/core'
 
 const Feed = ({ setLogged, changeInfoHeader }) => {
     useProtectedPage()
@@ -65,6 +68,9 @@ const Feed = ({ setLogged, changeInfoHeader }) => {
             Feed
             <OutlinedInput
                 onClick={() => goToFeedSearch(history)}
+                inputProps={{ 'aria-label': 'search' }}
+                placeholder={"  Restaurante"}
+                startAdornment={<SearchIcon style={{ color: '#808080'}}/>}
             />
             <ContainerCategories>
                 {displayCategories}
