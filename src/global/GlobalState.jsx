@@ -18,4 +18,3 @@ const GlobalState = (props) => {
 }
 
 export default GlobalState
-
