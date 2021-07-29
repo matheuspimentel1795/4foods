@@ -5,6 +5,7 @@ import OrdersHistory from '../../components/OrdersHistory/OrdersHistory'
 import PersonalData from '../../components/PersonalData.js/PersonalData'
 import UserAdress from '../../components/UserAdress/UserAdress'
 import { goToLogin } from '../../routes/coordinator'
+import { ContainerProfile } from './styled'
 
 const Profile = ({setLogged, changeInfoHeader}) =>{
     const history = useHistory()
@@ -17,7 +18,7 @@ const Profile = ({setLogged, changeInfoHeader}) =>{
     }
     
     return(
-        <div>
+        <ContainerProfile>
             <PersonalData setLogged={setLogged} />
             <UserAdress />
             <p>Histórico de Pedidos</p>
@@ -33,7 +34,7 @@ const Profile = ({setLogged, changeInfoHeader}) =>{
             >
                 Logout
             </Button>
-        </div>
+        </ContainerProfile>
     )
 }
 export default Profile
