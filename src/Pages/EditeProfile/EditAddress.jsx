@@ -1,34 +1,36 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import {ContainerForm, InputsContainer } from './styled'
+import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
+import {GlobalStateContext} from '../../global/GlobalStateContext';
 
-const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
+const EditAddress = ({setLogged, changeInfoHeader}) => {
     const history = useHistory()
     setLogged(false)
     changeInfoHeader("Endereço")
+    
+    const {address} = useContext(GlobalStateContext)
     const { input, onChangeInput, cleanFields } = useForm({
-        street:'',
-        number:'',
-        neighbourhood:'',
-        city:'',
-        state: '',
-        complement:''
+        street: address.address && address.address.street,
+        number: address.address && address.address.number,
+        neighbourhood: address.address && address.address.neighbourhood,
+        city: address.address && address.address.city,
+        state: address.address && address.address.state,
+        complement: address.address && address.address.complement
     })
     
     const onSubmitFormAdress = (event) =>{
-        console.log('oi')
         event.preventDefault()
         putAddAdress(input,history,cleanFields)
     }
 
     return (
-        <ContainerForm>
+        <div>
             <InputsContainer>
-                <form onSubmit={onSubmitFormAdress}>
+            <form onSubmit={onSubmitFormAdress}>
                     <TextField id="outlined-basic" label="Logradouro" variant="outlined"
                         required 
                         value={input.street} 
@@ -92,8 +94,8 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
                     </Button>
                 </form>
             </InputsContainer>
-        </ContainerForm>
+        </div>
     )
 }
 
-export default SignUpFormAdress
+export default EditAddress

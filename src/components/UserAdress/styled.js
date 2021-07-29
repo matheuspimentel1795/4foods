@@ -12,10 +12,22 @@ export const ContainerAdress = styled.div`
     #adress{
         display: flex;
         flex-direction: column;
-        align-self: flex-start;
+        /* align-self: flex-start; */
         
         #title{
             color: ${textColor};
+            width: 20.5rem;
+            height: 1.125rem;
+            margin: 0 0 0.5rem;
+            letter-spacing: -0.39px;
+        }
+
+        #adress{
+            width: 20.5rem;
+            height: 1.125rem;
+            margin: 0.5rem 0 0;
+            letter-spacing: -0.39px;
+            color: black;
         }
     }
     img{

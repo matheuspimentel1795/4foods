@@ -24,3 +24,18 @@ export const ContainerList = styled.div`
     }
 
 `
+
+export const ContainerRow = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    button{
+      
+    }
+    @media(max-device-width: 414px){
+        width: 100%;
+    }
+`

@@ -5,14 +5,14 @@ import editPen from '../../assets/editPen.png'
 import {goToEditeProfile} from '../../routes/coordinator'
 import { useHistory } from 'react-router'
 import {ContainerPersonalData} from './styled'
+import Loading from '../Loading/Loading'
 
 
 const PersonalData = () => {
     useProtectedPage()
     const history = useHistory()
-    const [isLoading, setIsLoading] = useState(false)
 
-    const data = useRequestData([], "/profile", setIsLoading)
+    const data = useRequestData([], "/profile")
     return(
         <ContainerPersonalData>
             {data.user ? <div>
@@ -24,7 +24,7 @@ const PersonalData = () => {
                     </div>
                     <img src={editPen} alt={"Caneta de editar"} onClick={() => goToEditeProfile(history,data.user.name, data.user.email, data.user.cpf)}/>
                 </div>
-            </div>: <></>}
+            </div>: <Loading/>}
             
 
         </ContainerPersonalData>
