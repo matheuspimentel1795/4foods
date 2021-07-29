@@ -6,6 +6,9 @@ import styled from 'styled-components'
 import useForm from '../../hooks/useForm'
 import { postPlaceOrder } from '../../services/postServices'
 import './Cart.css'
+import Button from '@material-ui/core/Button';
+
+
 const Container = styled.div`
     border: 1px solid black;
 `
@@ -16,37 +19,56 @@ const Imagem = styled.img`
 const Cart= ({setLogged, changeInfoHeader}) =>{
     useProtectedPage()
     setLogged(true)
-
     const {cart,setCart}=useContext(GlobalStateContext)
     const [payment,setPayment]=useState('')
     const { input, onChangeInput, cleanFields } = useForm({
         paymentMethod:'',
     })
     console.log('cart',cart)
-    const data = useRequestData([],`/restaurants/${1}`)
+    const data = useRequestData({},`/restaurants/${1}`)
+    console.log(data.restaurant?.shipping)
     const adress = useRequestData([],`/profile/address`)
-    console.log(adress.address)
     const end = adress?.address
+    /*----------------------------- Lógica remover quantidade--------------------------*/
+    const removeQuant = (id) =>{
+       const algo= cart.map((x)=>{
+            if(x.id===id){
+                x.quantidade = x.quantidade-1
+            }
+            return x
+       }).filter((z)=>{
+            return z.quantidade>0
+       })
+      setCart(algo)
+        console.log('algo',algo)
+    }
+
+/*----------------------------- Itens Carrinho--------------------------*/
     const list = cart.map((z)=>{
         return (
             <Container>
                  <Imagem src={z.url}/> 
                 <h2>{z.name}</h2>
                 <h2>{z.description}</h2>
-                <h2>Preço: R$ {z.price}</h2>
+                <h2>Preço: R$ {z.price*z.quantidade}</h2>
                 <h2>Quantidade: {z.quantidade}</h2>
+                <button onClick={()=>removeQuant(z.id)}>Remover</button>
             </Container>
         )
     })
-    console.log('pay',payment)
+    /*----------------------------- Lógica Soma--------------------------*/
     const valor = cart.map((c)=>{  
         return c.quantidade*c.price
     })
     console.log(valor)
     let soma = 0
     for(let i=0;i<valor.length;i++){
-        soma = soma + valor[i]
+        soma = soma + valor[i] 
     }
+    let somaWithFrete = soma + data.restaurant?.shipping
+    
+
+
     const onSubmitOrder = (event) =>{
         event.preventDefault()
         const body = {
@@ -61,26 +83,36 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
         }
         postPlaceOrder(1,body)
         }
-       
-
     return(
         <div>
-            <h1>Meu Carrinho</h1>
             <div className='adress-container'> 
-                <h3>Endereço de entrega</h3>
+                <h3 className='adress-title'>Endereço de entrega</h3>
                 <h3>{end?.street},{end?.number}</h3>
             </div>
-            
-            {list}
-            <h2>Preço total: {soma} </h2>
-            <h2>Forma de Pagamento</h2>
-            <form onSubmit={onSubmitOrder}>
-                    <input value={'money'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
+            {cart.length===0? <h3 className='text'>Carrinho Vazio</h3> :  list }
+            <h2 className='frete'>Frete: R$ {data.restaurant?.shipping},00 </h2>
+           <div className='price-container'>
+                <h2>Subtotal  </h2>
+                <h2 className='price'>R${soma===0? soma: somaWithFrete},00</h2>
+           </div>
+            <h2 className='payment'>Forma de Pagamento</h2>
+            <form className='submit-order' onSubmit={onSubmitOrder}>
+                <div>
+                <input value={'money'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
                     <label >Dinheiro </label> <br></br>
                     <input value={'creditcard'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
                     <label>Cartão de Crédito</label>
-                    <button>Confirmar</button>
+                </div>
+                <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        
+      >
+        Save
+      </Button>
             </form>  
+           
         </div>
     )
 }
