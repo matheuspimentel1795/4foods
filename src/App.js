@@ -8,7 +8,7 @@ const App =() => {
   return (
     <GlobalState>
     <ThemeProvider theme={theme}>
-     <Router logged={logged} setLogged={setLogged} infoHeader={infoHeader} setInfoHeader={setInfoHeader} changeInfoHeader={changeInfoHeader}/>
+     <Router/>
     </ThemeProvider>
     </GlobalState>
   )
