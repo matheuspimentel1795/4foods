@@ -55,8 +55,7 @@ const FeedSearch = ({ setLogged }) => {
                 value={input.search}
                 name={"search"}
                 inputProps={{ 'aria-label': 'search' }}
-                placeholder={"  Restaurante"}
-                style={{marginBottom:'2%'}}          
+                placeholder={"  Restaurante"}   
                 startAdornment={<SearchIcon 
                     style={{ color: '#808080', marginRight:'5%'}}
                     />}

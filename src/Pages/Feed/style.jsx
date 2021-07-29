@@ -30,5 +30,22 @@ export const ContainerCategories = styled.div`
     justify-content: center;
     gap: 2%;
     width: 100%;
+    margin: 2% 0;
+    height: 5vh;
     overflow: scroll;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+
+    /* border: 1px solid red; */
+    p{
+        :hover,:focus{
+            cursor: pointer;
+        }
+    }
+    @media(max-device-width: 414px){
+        justify-content: flex-start;
+        gap: 8%;
+        width: 98%;
+    }
+
 `

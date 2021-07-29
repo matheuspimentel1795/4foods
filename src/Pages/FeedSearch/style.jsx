@@ -7,10 +7,12 @@ export const Container = styled.div`
     justify-content: flex-start;
     .search-box{
         width: 20%;
+        margin: 1%;
     }
     @media(max-device-width: 414px){
         .search-box{
            width: 96%;
+           margin: 2%;
         }  
     }
 `
@@ -47,6 +49,7 @@ display: grid;
 grid-template-columns: 1fr 1fr 1fr;
 justify-items: center;
 align-items: center;
+border-bottom: 2px solid lightgray;
 button{
      justify-self:left;
     }
