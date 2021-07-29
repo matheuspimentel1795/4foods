@@ -7,26 +7,20 @@ import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
 import {GlobalStateContext} from '../../global/GlobalStateContext';
 
-const EditAdress = ({setLogged, changeInfoHeader}) => {
+const EditAddress = ({setLogged, changeInfoHeader}) => {
     const history = useHistory()
     setLogged(false)
     changeInfoHeader("Endereço")
+    
     const {address} = useContext(GlobalStateContext)
     const { input, onChangeInput, cleanFields } = useForm({
         street: address.address && address.address.street,
-        number:'',
-        neighbourhood:'',
-        city:'',
-        state: '',
-        complement:''
+        number: address.address && address.address.number,
+        neighbourhood: address.address && address.address.neighbourhood,
+        city: address.address && address.address.city,
+        state: address.address && address.address.state,
+        complement: address.address && address.address.complement
     })
-    const street = address.address && address.address.street 
-    console.log(street)
-    const number = address.address && address.address.number
-    const neighbourhood = address.address && address.address.neighbourhood 
-    const city = address.address && address.address.city 
-    const state = address.address && address.address.state
-    const complement = address.address && address.address.complement
     
     const onSubmitFormAdress = (event) =>{
         event.preventDefault()
@@ -42,7 +36,7 @@ const EditAdress = ({setLogged, changeInfoHeader}) => {
                         value={input.street} 
                         name={'street'} 
                         onChange={onChangeInput} 
-                        placeholder={street}
+                        placeholder='Rua / Av.'
                         margin={'normal'}
                         fullWidth
                     />
@@ -104,4 +98,4 @@ const EditAdress = ({setLogged, changeInfoHeader}) => {
     )
 }
 
-export default EditAdress
+export default EditAddress

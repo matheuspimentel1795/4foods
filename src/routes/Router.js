@@ -38,6 +38,8 @@ const Router = () => {
                 <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/perfil' component={() => <Profile setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/perfil/editar/:name?/:email?/:cpf?' component={() => <EditeProfile setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
+                <Route exact path='/perfil/editar-endereco' component={() => 
+                <EditAddress setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/restaurantes/busca' component={() => <FeedSearch setLogged={setLogged} />} />
             </Switch>

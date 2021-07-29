@@ -3,6 +3,7 @@ import { GlobalStateContext } from './GlobalStateContext'
 import useRequestData from '../hooks/useRequestData'
 
 const GlobalState = (props) =>{
+
     const token = {
         auth: localStorage.getItem('token')
     }
@@ -10,11 +11,10 @@ const GlobalState = (props) =>{
     const [cart,setCart] = useState([])
     console.log('carrrinho global state', cart)
 
-    const {data: profile, getData: getProfile} = useRequestData({}, `/perfil`, token)
-    const {data: address} = useRequestData({}, `/cadastro-endereco`, token)
+    const address = useRequestData({}, `/profile/address`)
     
     return(
-        <GlobalStateContext.Provider value={{ cart,setCart, address, profile, getProfile }}>
+        <GlobalStateContext.Provider value={{ cart,setCart, address}}>
                 {props.children}
         </GlobalStateContext.Provider>
     )
