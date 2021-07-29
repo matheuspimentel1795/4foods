@@ -5,7 +5,7 @@ import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
-import GlobalStateContext from '../../global/GlobalStateContext';
+import {GlobalStateContext} from '../../global/GlobalStateContext';
 
 const EditAdress = ({setLogged, changeInfoHeader}) => {
     const history = useHistory()
