@@ -8,12 +8,14 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { goToFeed, goToCarr, goToProfile } from '../../routes/coordinator'
 import {ContainerFooter} from './styled'
+import ActiveOrder from '../ActiveOrder/ActiveOrder'
 
 const Footer = () => {
     const history = useHistory()
     const [iconHomePage, setIconHomePage] =  useState(homepageRed)
     const [iconShoppingCard, setIconShoppingCard] =  useState(shoppingCartWhite)
     const [iconAvatar, setIconAvatar] = useState(avatarWhite)
+    const [currentPage, setCuttentPage] = useState("Home")
     
     const changeIcon = (page) => {
         switch(page){
@@ -21,31 +23,38 @@ const Footer = () => {
                 setIconHomePage(homepageRed)
                 setIconShoppingCard(shoppingCartWhite)
                 setIconAvatar(avatarWhite)
+                setCuttentPage("Home")
                 break;
             case "Carrinho":
                 setIconHomePage(homepageWhite)
                 setIconShoppingCard(shoppingCartRed)
                 setIconAvatar(avatarWhite)
+                setCuttentPage("Carrinho")
                 break;
             case "Perfil":
                 setIconHomePage(homepageWhite)
                 setIconShoppingCard(shoppingCartWhite)
                 setIconAvatar(avatarRed)
+                setCuttentPage("Perfil")
                 break;
             default:
                 setIconHomePage(homepageRed)
                 setIconShoppingCard(shoppingCartWhite)
                 setIconAvatar(avatarWhite)
+                setCuttentPage("")
                 break;
         }
     }
 
     return(
-        <ContainerFooter>
-            <img src={iconHomePage} alt={"Icone Página Inicial"} onClick={() =>{changeIcon("Home"); goToFeed(history)}}/>
-            <img src={iconShoppingCard} alt={"Icone Carrinho"} onClick={ () =>{changeIcon("Carrinho"); goToCarr(history)}}/>
-            <img src={iconAvatar} alt={"Icone Perfil"} onClick={() =>{changeIcon("Perfil"); goToProfile(history)}}/>
-        </ContainerFooter>
+        <div>
+            {currentPage === "Home" && <ActiveOrder/>}
+            <ContainerFooter>
+                <img src={iconHomePage} alt={"Icone Página Inicial"} onClick={() =>{changeIcon("Home"); goToFeed(history)}}/>
+                <img src={iconShoppingCard} alt={"Icone Carrinho"} onClick={ () =>{changeIcon("Carrinho"); goToCarr(history)}}/>
+                <img src={iconAvatar} alt={"Icone Perfil"} onClick={() =>{changeIcon("Perfil"); goToProfile(history)}}/>
+            </ContainerFooter>
+        </div>
     )
 }
 

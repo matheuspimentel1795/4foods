@@ -18,6 +18,10 @@ export const goToEditeProfile = (history, name, email, cpf) =>{
     history.push(`/perfil/editar/${name}/${email}/${cpf}`)
 } 
 
+export const goToEditAdress = (history,id) =>{
+    history.push(`/perfil/editar-endereco`)
+} 
+
 export const goToCarr = (history) =>{
     history.push('/carrinho')
 } 

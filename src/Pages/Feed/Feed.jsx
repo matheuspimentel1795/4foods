@@ -65,7 +65,6 @@ const Feed = ({ setLogged, changeInfoHeader }) => {
 
     return (
         <Container>
-            Feed
             <OutlinedInput
                 onClick={() => goToFeedSearch(history)}
                 inputProps={{ 'aria-label': 'search' }}
