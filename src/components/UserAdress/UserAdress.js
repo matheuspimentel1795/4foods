@@ -5,10 +5,10 @@ import useRequestData from '../../hooks/useRequestData'
 import { goToEditAdress } from '../../routes/coordinator'
 import editPen from '../../assets/editPen.png'
 import { ContainerAdress } from './styled'
+import Loading from '../Loading/Loading'
 
 const UserAdress = () =>{
     const history = useHistory()
-    const [isLoading, setIsLoading] = useState(false)
 
     useProtectedPage()
 
@@ -23,8 +23,7 @@ const UserAdress = () =>{
                     ${data.address.city}-${data.address.state} `}</p>
                 </div>
                     <img src={editPen} alt={"Caneta de editar"} onClick={() => goToEditAdress(history,data.id)}/>
-            </ContainerAdress>: <></>}
-
+            </ContainerAdress>: <Loading/>}
         </div>
     )
 }

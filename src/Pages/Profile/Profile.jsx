@@ -20,6 +20,8 @@ const Profile = ({setLogged, changeInfoHeader}) =>{
         <div>
             <PersonalData setLogged={setLogged} />
             <UserAdress />
+            <p>Histórico de Pedidos</p>
+            <hr/>
             <OrdersHistory/>
             <Button
                 variant="contained" 

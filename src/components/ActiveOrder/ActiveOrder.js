@@ -6,8 +6,6 @@ import { ContainerActiveOrder } from './styled'
 const ActiveOrder = () => {
     const {ativeOrder} = useContext(GlobalStateContext)
 
-    console.log("pedidos em aberto",ativeOrder)
-
     return(
         <div>
             {ativeOrder.order &&
