@@ -22,7 +22,7 @@ const Router = () =>{
                 <Route exact path='/cadastro' component={SignUp}/>
                 <Route exact path='/cadastro-endereco' component={SignUpFormAdress}/>
                 <Route exact path='/restaurantes' component={() => <Feed setLogged={setLogged}/>} />
-                <Route exact path='/detalhes-restaurante' component={() => <ShoppingDetail setLogged={setLogged}/>}/>
+                <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail setLogged={setLogged}/>}/>
                 <Route exact path='/perfil' component={() => <Profile setLogged={setLogged}/>}/>
                 <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged}/>}/>
             </Switch>

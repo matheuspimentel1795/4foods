@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../constants/urls'
 
-const useRequestData = (initialData, path, setIsLoading) => {
+const useRequestData = (initialData, path) => {
     
     const [data, setData] = useState(initialData)
 
@@ -13,15 +13,15 @@ const useRequestData = (initialData, path, setIsLoading) => {
     }
 
     useEffect(() => {
-        setIsLoading(true)
+        // setIsLoading(true)
         axios(config)
             .then((res) => {
                 setData(res.data)
-                setIsLoading(false)
+                // setIsLoading(false)
             })
             .catch((err) => {
                 window.alert('Erro ao realizar solicitação.\n Tente novamente.')
-                setIsLoading(false)
+                // setIsLoading(false)
             })
         
     }, [path])
