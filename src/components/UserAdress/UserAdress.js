@@ -12,7 +12,7 @@ const UserAdress = () =>{
 
     useProtectedPage()
 
-    const data = useRequestData([], "/profile/address", setIsLoading)
+    const data = useRequestData([], "/profile/address")
 
     return(
         <div>
