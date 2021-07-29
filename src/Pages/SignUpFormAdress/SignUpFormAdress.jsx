@@ -1,7 +1,7 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { InputsContainer } from './styled'
+import {ContainerForm, InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
@@ -26,9 +26,9 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
     }
 
     return (
-        <div>
+        <ContainerForm>
             <InputsContainer>
-            <form onSubmit={onSubmitFormAdress}>
+                <form onSubmit={onSubmitFormAdress}>
                     <TextField id="outlined-basic" label="Logradouro" variant="outlined"
                         required 
                         value={input.street} 
@@ -92,7 +92,7 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
                     </Button>
                 </form>
             </InputsContainer>
-        </div>
+        </ContainerForm>
     )
 }
 
