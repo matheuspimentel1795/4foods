@@ -30,7 +30,7 @@ const Router = () => {
                 <Route exact path='/restaurantes' component={() => <Feed/>} />
                 <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail/>}/>
                 <Route exact path='/perfil' component={() => <Profile/>}/>
-                <Route exact path='/perfil/editar/:name?/:email?/:cpf?' component={() => <EditeProfile/>}/>
+                <Route exact path='/perfil/editar/' component={() => <EditeProfile/>}/>
                 <Route exact path='/perfil/editar-endereco' component={() => 
                 <EditAddress/>}/>
                 <Route exact path='/carrinho' component={() => <Cart/>}/>

@@ -14,11 +14,11 @@ export const goToProfile = (history) =>{
     history.push('/perfil')
 }
 
-export const goToEditeProfile = (history, name, email, cpf) =>{
-    history.push(`/perfil/editar/${name}/${email}/${cpf}`)
+export const goToEditeProfile = (history) =>{
+    history.push(`/perfil/editar/`)
 } 
 
-export const goToEditAdress = (history,id) =>{
+export const goToEditAdress = (history) =>{
     history.push(`/perfil/editar-endereco`)
 } 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -6,14 +6,16 @@ import {ContainerForm, InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { putUpdateProfile } from '../../services/putServices'
 import Header from '../../components/Header/Header'
+import { GlobalStateContext } from '../../global/GlobalStateContext'
 
 const EditeProfile = () => {
-    const params = useParams()
+
+    const {dataProfile} = useContext(GlobalStateContext)
 
     const { input, onChangeInput, cleanFields } = useForm({
-        name: params.name,
-        email: params.email,
-        cpf: params.cpf,
+        name: dataProfile.user && dataProfile.user.name,
+        email: dataProfile.user && dataProfile.user.email,
+        cpf: dataProfile.user && dataProfile.user.cpf,
     })
     
     const onSubmitSignUp = (event) =>{
@@ -26,7 +28,6 @@ const EditeProfile = () => {
             <Header/>
             <ContainerForm>
                 <InputsContainer>
-
                 <form onSubmit={onSubmitSignUp}>
                         <TextField id="outlined-basic" label="Nome" variant="outlined"
                             required 
