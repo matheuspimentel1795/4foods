@@ -3,6 +3,8 @@ import React, { useContext, useState, useEffect }  from 'react'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 import useProtectedPage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
+import Loading from '../../components/Loading/Loading'
+
 
 
 import {useParams} from 'react-router-dom'
@@ -17,21 +19,18 @@ import Header from '../../components/Header/Header'
 const ShoppingDetail = () =>{
     useProtectedPage()
     
-    
+    const [isLoading, setIsLoading] = useState(true)
     const [categories, setCategories] = useState([])
     const [restaurant, setRestaurant] = useState([])
     const [products, setProducts] = useState([])
     const params = useParams()
     const [quant, setQuant]=useState(0)
-    const [add, setAdd]=useState(false)
     const {cart,setCart}=useContext(GlobalStateContext)
+
     const onChangeQuant = (event) =>{
         setQuant(event.target.value)
     } 
-    const sendOrder = ()=>{
-        setAdd(true)
-    }
-
+    
     const sendQuant = (id,nome,preco,descricao,picture,category)=>{ 
         const obj = {
             id: id,
@@ -45,6 +44,7 @@ const ShoppingDetail = () =>{
             restaurantName: restaurant.name,
             restaurantTime: restaurant.deliveryTime,
             restauranteAddress: restaurant.address,
+            shipping: restaurant.shipping
         } 
         setCart([...cart,obj])
     }
@@ -59,6 +59,8 @@ const ShoppingDetail = () =>{
             setRestaurant(res.data.restaurant)
             setProducts(res.data.restaurant.products)
             analizeCategories(res.data.restaurant.products)
+            console.log("terminou")
+            setIsLoading(false)
                 
         } catch (err){
             console.log(err.message)
@@ -127,10 +129,13 @@ const ShoppingDetail = () =>{
     return(
         <div>
             <Header/>
+            { isLoading ? 
+                <Loading />
+            : 
             <ContainerRestaurantsDetails>
                 <CardRestaurant restaurant={restaurant}/>
                 <div> {renderCategory()} </div>
-            </ContainerRestaurantsDetails>
+            </ContainerRestaurantsDetails>}
         </div>
     )
 }
