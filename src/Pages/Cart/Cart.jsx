@@ -7,22 +7,90 @@ import useForm from '../../hooks/useForm'
 import { postPlaceOrder } from '../../services/postServices'
 import './Cart.css'
 import Button from '@material-ui/core/Button';
+
+import MyButton from './buttonStyled'
 const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    margin: 0px;
+    p{
+    :nth-child(2){
+     width: 36px;
+     height: 36px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border: 1px solid #e86e5a;
+     box-sizing: border-box;
+     border-top-right-radius: 8px;
+     border-bottom-left-radius: 8px;
+       padding: 0px;
+       margin: 0px;
+     color: #e86e5a;
+   }
+ }
+`
+
+const PName = styled.p`
+margin: 1.125rem 3.063rem 1rem 1rem;
+font-family: Roboto;
+font-size: 1rem;
+font-weight: normal;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: -0.39px;
+color: #e8222e;
+`
+const PDescription = styled.p`
+    margin: 0.5rem 1rem 0.25rem;
+    font-family: Roboto;
+    font-size: 0.75rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.29px;
+    color: #B8B8B8;
 `
 const ContainerPage = styled.div`
     margin: 64px 0 80px 0;
     `
 const Container = styled.div`
-    margin: 2%;
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 0.5fr 1fr ;
-`
-const Imagem = styled.img`
+    margin:2%;
     width: 100%;
     height: 100%;
+    border: 1px solid #b8b8b8;
+    display: grid;
+    grid-template-columns: 97px 1fr;
+    border-radius: 8px;
+    //overflow: hidden;
+    margin-bottom: 8px;
+    position: relative;
+`
+const Imagem = styled.img`
+    grid-column: 1/2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+`
+const ContainerDescription = styled.div`
+    grid-column: 2/3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+`
+const ContainerFooter = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    h2{
+        margin-left: 2%;
+    }
 `
 
 const Cart= ({setLogged, changeInfoHeader}) =>{
@@ -32,11 +100,9 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
     const {cart,setCart}=useContext(GlobalStateContext)
     const { input, onChangeInput, cleanFields } = useForm({
         paymentMethod:'',
-    })
+    })   
     console.log('cart',cart)
-    const data = useRequestData({},`/restaurants/${cart.map((x)=>{
-        return x.idRestaurant
-    })}`)
+    const data =  useRequestData({},`/restaurants/${cart[0].idRestaurant}`)
     console.log(data.restaurant)
     const adress = useRequestData([],`/profile/address`)
     const end = adress?.address
@@ -61,18 +127,17 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
                 <div>
                  <Imagem src={z.url}/>
                  </div>
-                 <div>
+                 <ContainerDescription>
                      <HeaderContainer>
-                <h2>{z.name}</h2>
-                <h2>Quant: {z.quantidade}</h2>
+                        <PName >{z.name}</PName >
+                        <p> {z.quantidade}</p>
                     </HeaderContainer>
-                <h2>{z.description}</h2>
-                <div>
-                <h2>Preço: R$ {z.price*z.quantidade}</h2>
-                
-                <button onClick={()=>removeQuant(z.id)}>Remover</button>
-                </div>
-                </div>
+                <PDescription>{z.description}</PDescription>
+                <ContainerFooter>
+                    <h2> R$ {z.price*z.quantidade}</h2>
+                    <MyButton onClick={()=>removeQuant(z.id)}>Remover</MyButton>
+                </ContainerFooter>
+                </ContainerDescription>
             </Container>
         )
     })
@@ -108,15 +173,15 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
                 <h3 className='adress-title'>Endereço de entrega</h3>
                 <h3>{end?.street},{end?.number}</h3>
             </div>
-            <div className='restaurant-address'>
+           {data.restaurant? <div className='restaurant-address'>
                 <h3>{data.restaurant?.name}</h3>
                 <h3 className='restauran-adress-time' >{data.restaurant?.address}</h3>
                 <h3 className='restauran-adress-time'>{data.restaurant?.deliveryTime} min</h3>
-            </div>
+            </div>: <div></div>} 
             <div>
             {cart.length===0? <h3 className='text'>Carrinho Vazio</h3> :  list }
             </div>
-            <h2 className='frete'>Frete: R$ {data.restaurant?.shipping},00 </h2>
+            <h2 className='frete'>Frete: R$ {data.restaurant?.shipping? data.restaurant?.shipping: '0'},00 </h2>
            <div className='price-container'>
                 <h2>Subtotal  </h2>
                 <h2 className='price'>R${soma===0? soma: somaWithFrete},00</h2>
@@ -138,7 +203,7 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
         Confirmar
       </Button>
             </form>  
-           
+
         </ContainerPage>
     )
 }

@@ -17,6 +17,7 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     changeInfoHeader("Restaurante")
     useProtectedPage()
     
+    
     const [categories, setCategories] = useState([])
     const [restaurant, setRestaurant] = useState([])
     const [products, setProducts] = useState([])
@@ -24,15 +25,12 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     const [quant, setQuant]=useState(0)
     const [add, setAdd]=useState(false)
     const {cart,setCart}=useContext(GlobalStateContext)
-    
     const onChangeQuant = (event) =>{
         setQuant(event.target.value)
     } 
     const sendOrder = ()=>{
         setAdd(true)
-    }
-
-    
+    } 
     const sendQuant = (id,nome,preco,descricao,picture,category)=>{ 
         const obj = {
             id: id,

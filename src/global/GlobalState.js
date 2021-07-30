@@ -9,7 +9,6 @@ const GlobalState = (props) =>{
     }
 
     const [cart,setCart] = useState([])
-
     const ativeOrder = useRequestData({}, "/active-order")
     const address = useRequestData({}, `/profile/address`)
     
