@@ -134,7 +134,7 @@ const Cart = () => {
                     </HeaderContainer>
                     <PDescription>{z.description}</PDescription>
                     <ContainerFooter>
-                        <h2> R$ {z.price * z.quantidade}</h2>
+                        <h2> R$ {(z.price.toFixed(2) * z.quantidade).toFixed(2)}</h2>
                         <MyButton onClick={() => removeQuant(z.id)}>Remover</MyButton>
                     </ContainerFooter>
                 </ContainerDescription>
@@ -146,7 +146,7 @@ const Cart = () => {
         return c.quantidade * c.price
     })
     console.log(valor)
-    let soma = 0
+    let soma = 0.00
     for (let i = 0; i < valor.length; i++) {
         soma = soma + valor[i]
     }
@@ -166,7 +166,7 @@ const Cart = () => {
             }),
             paymentMethod: input.paymentMethod
         }
-        postPlaceOrder(1, body)
+        postPlaceOrder(cart[0]?.idRestaurant, body)
     }
     return (
         <div>
@@ -184,10 +184,10 @@ const Cart = () => {
                 <div>
                     {cart.length === 0 ? <h3 className='text'>Carrinho Vazio</h3> : list}
                 </div>
-                <h2 className='frete'>Frete: R$ {cart.length>0?cart[0]?.shipping : '0'},00 </h2>
+                <h2 className='frete'>Frete: R$ {cart.length>0?cart[0]?.shipping.toFixed(2) : '0,00'} </h2>
                 <div className='price-container'>
                     <h2>Subtotal  </h2>
-                    <h2 className='price'>R${soma === 0 ? soma : somaWithFrete},00</h2>
+                    <h2 className='price'>R${soma === 0 ? soma : somaWithFrete.toFixed(2)}</h2>
                 </div>
                 <h2 className='payment'>Forma de Pagamento</h2>
                 <form className='submit-order' onSubmit={onSubmitOrder}>
