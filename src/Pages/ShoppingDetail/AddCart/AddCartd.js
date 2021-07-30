@@ -18,7 +18,6 @@ import MyButton from './buttonStyled'
 import styled from "styled-components";
 import { OpenInNewOutlined, OpenInNewRounded } from '@material-ui/icons';
 
-
 const ButtonContainer = styled.div`
   display: flex;
     justify-content: flex-end;
@@ -60,10 +59,7 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant, idRes
     })
     setCart(algo)
     changeButton()
-    
-  
   }
-
 
   const addToCart = () => {
     popUpClose()
@@ -83,7 +79,6 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant, idRes
           setCardExist(prod.quantidade)
           break
       } 
-      
     }
   }
 
@@ -152,6 +147,3 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant, idRes
   </div>
   )
 }
-
-
-  

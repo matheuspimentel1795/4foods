@@ -32,17 +32,19 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
         setAdd(true)
     }
 
-    
     const sendQuant = (id,nome,preco,descricao,picture,category)=>{ 
         const obj = {
             id: id,
-            name:nome,
-            description:descricao,
+            name: nome,
+            description: descricao,
             quantidade: Number(quant),
             price: preco,
             url: picture,
             category: category,
-            idRestaurant: params.id
+            idRestaurant: params.id,
+            restaurantName: restaurant.name,
+            restaurantTime: restaurant.deliveryTime,
+            restauranteAddress: restaurant.address,
         } 
         setCart([...cart,obj])
     }
