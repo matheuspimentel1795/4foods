@@ -132,7 +132,8 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
                 <Button
         variant="contained"
         color="primary"
-        size="small" 
+        size="small"
+        type={"submit"}
       >
         Confirmar
       </Button>
