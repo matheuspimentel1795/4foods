@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { InputsContainer } from './styled'
+import {ContainerForm, InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
@@ -27,7 +27,7 @@ const EditAddress = () => {
     }
 
     return (
-        <div>
+        <ContainerForm>
             <Header/>
             <InputsContainer>
             <form onSubmit={onSubmitFormAdress}>
@@ -94,7 +94,7 @@ const EditAddress = () => {
                     </Button>
                 </form>
             </InputsContainer>
-        </div>
+        </ContainerForm>
     )
 }
 

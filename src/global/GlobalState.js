@@ -7,9 +7,10 @@ const GlobalState = (props) =>{
     const [cart,setCart] = useState([])
     const ativeOrder = useRequestData({}, "/active-order")
     const address = useRequestData({}, `/profile/address`)
+    const dataProfile = useRequestData([], "/profile")
     
     return(
-        <GlobalStateContext.Provider value={{ cart,setCart, address, ativeOrder}}>
+        <GlobalStateContext.Provider value={{ cart,setCart, address, ativeOrder, dataProfile}}>
                 {props.children}
         </GlobalStateContext.Provider>
     )
