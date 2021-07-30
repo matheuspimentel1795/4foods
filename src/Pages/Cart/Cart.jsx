@@ -9,7 +9,7 @@ import './Cart.css'
 import Button from '@material-ui/core/Button';
 
 const ContainerPage = styled.div`
-    margin-bottom: 80px;
+    margin: 64px 0 80px 0;
 `
 
 const Container = styled.div`
@@ -21,6 +21,7 @@ const Imagem = styled.img`
 
 const Cart= ({setLogged, changeInfoHeader}) =>{
     useProtectedPage()
+    changeInfoHeader("Meu Carrinho")
     setLogged(true)
     const {cart,setCart}=useContext(GlobalStateContext)
     const [payment,setPayment]=useState('')

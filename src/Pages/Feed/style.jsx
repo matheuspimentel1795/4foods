@@ -6,7 +6,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    margin-bottom: 80px;
+    margin: 64px 0 80px 0;
 `
 
 export const ContainerList = styled.div`
