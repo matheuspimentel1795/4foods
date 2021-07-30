@@ -40,7 +40,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [ ] Preencher com lista de itens em desenvolvimento
 
 <h2 id="link">:link: Link Surge - link para visualização do site</h2>
-<a href="molina-fourfood.surge.sh">fourFoodA</a>
+<a href="http://molina-fourfood.surge.sh/">fourFoodA</a>
 <h2 id="imagens">:computer: Imagens Desktop</h2>
 
 - **Página inicial**
