@@ -4,10 +4,6 @@ import useRequestData from '../hooks/useRequestData'
 
 const GlobalState = (props) =>{
 
-    const token = {
-        auth: localStorage.getItem('token')
-    }
-
     const [cart,setCart] = useState([])
     const ativeOrder = useRequestData({}, "/active-order")
     const address = useRequestData({}, `/profile/address`)

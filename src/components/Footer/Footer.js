@@ -12,6 +12,7 @@ import ActiveOrder from '../ActiveOrder/ActiveOrder'
 
 const Footer = () => {
     const history = useHistory()
+    console.log(history.location.pathname)
 
     return(
         <Container>
@@ -20,7 +21,7 @@ const Footer = () => {
                 <img src={history.location.pathname === "/restaurantes"? homepageRed: homepageWhite} alt={"Icone Página Inicial"} onClick={() =>goToFeed(history)}/>
                 <img src={history.location.pathname === "/carrinho" ? shoppingCartRed: shoppingCartWhite} alt={"Icone Carrinho"} onClick={ () => goToCarr(history)}/>
                 <img src={history.location.pathname === "/perfil" ? avatarRed : avatarWhite} alt={"Icone Perfil"} onClick={() => goToProfile(history)}/>
-            </ContainerFooter>
+            </ContainerFooter>:
         </Container>
     )
 }

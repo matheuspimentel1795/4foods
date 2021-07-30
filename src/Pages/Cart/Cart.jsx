@@ -1,4 +1,4 @@
-import React, { useContext, useState }  from 'react'
+import React, { useContext, useState } from 'react'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 import useProtectedPage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
@@ -7,8 +7,10 @@ import useForm from '../../hooks/useForm'
 import { postPlaceOrder } from '../../services/postServices'
 import './Cart.css'
 import Button from '@material-ui/core/Button';
-
 import MyButton from './buttonStyled'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
+
 const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -93,118 +95,118 @@ const ContainerFooter = styled.div`
     }
 `
 
-const Cart= ({setLogged, changeInfoHeader}) =>{
+const Cart = () => {
     useProtectedPage()
-    changeInfoHeader("Meu Carrinho")
-    setLogged(true)
-    const {cart,setCart}=useContext(GlobalStateContext)
+    const { cart, setCart } = useContext(GlobalStateContext)
     const { input, onChangeInput, cleanFields } = useForm({
-        paymentMethod:'',
-    })   
-    console.log('cart',cart)
-    const data =  useRequestData({},`/restaurants/${cart[0].idRestaurant}`)
+        paymentMethod: '',
+    })
+    console.log('cart', cart)
+    const data = useRequestData({}, `/restaurants/${1}`)
     console.log(data.restaurant)
-    const adress = useRequestData([],`/profile/address`)
+    const adress = useRequestData([], `/profile/address`)
     const end = adress?.address
- /*----------------------------- Lógica remover quantidade--------------------------*/
-    const removeQuant = (id) =>{
-       const algo= cart.map((x)=>{
-            if(x.id===id){
-                x.quantidade = x.quantidade-1
+    /*----------------------------- Lógica remover quantidade--------------------------*/
+    const removeQuant = (id) => {
+        const algo = cart.map((x) => {
+            if (x.id === id) {
+                x.quantidade = x.quantidade - 1
             }
             return x
-       }).filter((z)=>{
-            return z.quantidade>0
-       })
+        }).filter((z) => {
+            return z.quantidade > 0
+        })
         setCart(algo)
-        console.log('algo',algo)
+        console.log('algo', algo)
     }
-  
-/*----------------------------- Itens Carrinho--------------------------*/
-    const list = cart.map((z)=>{
+
+    /*----------------------------- Itens Carrinho--------------------------*/
+    const list = cart.map((z) => {
         return (
             <Container>
                 <div>
-                 <Imagem src={z.url}/>
-                 </div>
-                 <ContainerDescription>
-                     <HeaderContainer>
+                    <Imagem src={z.url} />
+                </div>
+                <ContainerDescription>
+                    <HeaderContainer>
                         <PName >{z.name}</PName >
                         <p> {z.quantidade}</p>
                     </HeaderContainer>
-                <PDescription>{z.description}</PDescription>
-                <ContainerFooter>
-                    <h2> R$ {z.price*z.quantidade}</h2>
-                    <MyButton onClick={()=>removeQuant(z.id)}>Remover</MyButton>
-                </ContainerFooter>
+                    <PDescription>{z.description}</PDescription>
+                    <ContainerFooter>
+                        <h2> R$ {z.price * z.quantidade}</h2>
+                        <MyButton onClick={() => removeQuant(z.id)}>Remover</MyButton>
+                    </ContainerFooter>
                 </ContainerDescription>
             </Container>
         )
     })
     /*----------------------------- Lógica Soma--------------------------*/
-    const valor = cart.map((c)=>{  
-        return c.quantidade*c.price
+    const valor = cart.map((c) => {
+        return c.quantidade * c.price
     })
     console.log(valor)
     let soma = 0
-    for(let i=0;i<valor.length;i++){
-        soma = soma + valor[i] 
+    for (let i = 0; i < valor.length; i++) {
+        soma = soma + valor[i]
     }
     let somaWithFrete = soma + data.restaurant?.shipping
-    
-    const onSubmitOrder = (event) =>{
+
+    const onSubmitOrder = (event) => {
         console.log('oi')
         event.preventDefault()
         const body = {
-            'products' : cart.map((a)=>{
-                return(
-                    {   quantity: a.quantidade,
+            'products': cart.map((a) => {
+                return (
+                    {
+                        quantity: a.quantidade,
                         id: a.id
                     }
                 )
             }),
-            paymentMethod : input.paymentMethod
+            paymentMethod: input.paymentMethod
         }
-        postPlaceOrder(1,body)
-        }
-    return(
-        <ContainerPage>
-            <div className='adress-container'> 
-                <h3 className='adress-title'>Endereço de entrega</h3>
-                <h3>{end?.street},{end?.number}</h3>
-            </div>
-           {data.restaurant? <div className='restaurant-address'>
-                <h3>{data.restaurant?.name}</h3>
-                <h3 className='restauran-adress-time' >{data.restaurant?.address}</h3>
-                <h3 className='restauran-adress-time'>{data.restaurant?.deliveryTime} min</h3>
-            </div>: <div></div>} 
-            <div>
-            {cart.length===0? <h3 className='text'>Carrinho Vazio</h3> :  list }
-            </div>
-            <h2 className='frete'>Frete: R$ {data.restaurant?.shipping? data.restaurant?.shipping: '0'},00 </h2>
-           <div className='price-container'>
-                <h2>Subtotal  </h2>
-                <h2 className='price'>R${soma===0? soma: somaWithFrete},00</h2>
-           </div>
-            <h2 className='payment'>Forma de Pagamento</h2>
-            <form className='submit-order' onSubmit={onSubmitOrder}>
-                <div>
-                <input value={'money'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
-                    <label >Dinheiro </label> <br></br>
-                    <input value={'creditcard'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
-                    <label>Cartão de Crédito</label>
+        postPlaceOrder(1, body)
+    }
+    return (
+        <div>
+            <Header />
+            <ContainerPage>
+                <div className='adress-container'>
+                    <h3 className='adress-title'>Endereço de entrega</h3>
+                    <h3>{end?.street},{end?.number}</h3>
                 </div>
-                <Button
-            variant="contained"
-            color="primary"
-        size="small" 
-        type='submit'
-      >
-        Confirmar
-      </Button>
-            </form>  
+                {data.restaurant ? <div className='restaurant-address'>
+                    <h3>{data.restaurant?.name}</h3>
+                    <h3 className='restauran-adress-time' >{data.restaurant?.address}</h3>
+                    <h3 className='restauran-adress-time'>{data.restaurant?.deliveryTime} min</h3>
+                </div> : <div></div>}
+                <div>
+                    {cart.length === 0 ? <h3 className='text'>Carrinho Vazio</h3> : list}
+                </div>
+                <h2 className='frete'>Frete: R$ {data.restaurant?.shipping ? data.restaurant?.shipping : '0'},00 </h2>
+                <div className='price-container'>
+                    <h2>Subtotal  </h2>
+                    <h2 className='price'>R${soma === 0 ? soma : somaWithFrete},00</h2>
+                </div>
+                <h2 className='payment'>Forma de Pagamento</h2>
+                <form className='submit-order' onSubmit={onSubmitOrder}>
+                    <div>
+                        {cart.length === 0 ? <h3 className='text'>Carrinho Vazio</h3> : list}
+                    </div>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        type='submit'
+                    >
+                        Confirmar
+                    </Button>
+                </form>
 
-        </ContainerPage>
+            </ContainerPage>
+            <Footer />
+        </div>
     )
 }
 export default Cart

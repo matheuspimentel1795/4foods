@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '@material-ui/core/Button'
 import { ScreenContainer, SignUpButtonContainer } from './styled'
 import LoginForm from './LoginForm'
@@ -6,13 +6,11 @@ import logo from '../../assets/logo-future-eats-red.png'
 import useUnProtected from '../../hooks/useUnprotectedPage'
 import { goToSignUp } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
+import Header from '../../components/Header/Header'
 
-const Login = ({setInitialPage, setLogged, changeInfoHeader}) =>{
+const Login = () =>{
     useUnProtected()
     const history = useHistory()
-    setInitialPage(true)
-    setLogged(false)
-    changeInfoHeader("")
     // const goToSignUpPage = () => {
     //     goToSignUp(history)
     // }

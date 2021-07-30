@@ -18,7 +18,6 @@ import MyButton from './buttonStyled'
 import styled from "styled-components";
 import { OpenInNewOutlined, OpenInNewRounded } from '@material-ui/icons';
 
-
 const ButtonContainer = styled.div`
   display: flex;
     justify-content: flex-end;
@@ -27,13 +26,21 @@ const ButtonContainer = styled.div`
     
 `;
 
-export default function AddCart({sendQuant, product, onChangeQuant, quant}){
+export default function AddCart({sendQuant, product, onChangeQuant, quant, idRestaurant}){
   const [open, setOpen] = useState(false);
   const {cart,setCart}=useContext(GlobalStateContext)
   const [cardExist, setCardExist] = useState(0)
 
   const popUpClickOpen = () => {
-    setOpen(true)
+    if(cart.length > 0){
+      if(idRestaurant === cart[0].idRestaurant){
+        setOpen(true)
+      } else {
+        alert("Infelizmente você não pode realizar pedidos em diferentes restaurantes! Verifique seu carrinho")
+      }
+    } else {
+      setOpen(true)
+    }
   }
 
   const popUpClose = () => {
@@ -52,10 +59,7 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
     })
     setCart(algo)
     changeButton()
-    
-  
   }
-
 
   const addToCart = () => {
     popUpClose()
@@ -65,7 +69,8 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
       product.price,
       product.description,
       product.photoUrl, 
-      product.category)
+      product.category
+    )
   }
 
   const changeButton = () =>{
@@ -74,7 +79,6 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
           setCardExist(prod.quantidade)
           break
       } 
-      
     }
   }
 
@@ -143,6 +147,3 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
   </div>
   )
 }
-
-
-  

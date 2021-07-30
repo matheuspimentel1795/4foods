@@ -11,10 +11,10 @@ import CardProduct from './CardProduct/CardProduct'
 import getRestaurant from '../../services/getRestaurant/getRestaurant'
 import Footer from '../../components/Footer/Footer'
 import { ContainerRestaurantsDetails } from './styled'
+import Header from '../../components/Header/Header'
 
 
-const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
-    changeInfoHeader("Restaurante")
+const ShoppingDetail = () =>{
     useProtectedPage()
     
     
@@ -30,17 +30,21 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     } 
     const sendOrder = ()=>{
         setAdd(true)
-    } 
+    }
+
     const sendQuant = (id,nome,preco,descricao,picture,category)=>{ 
         const obj = {
             id: id,
-            name:nome,
-            description:descricao,
+            name: nome,
+            description: descricao,
             quantidade: Number(quant),
             price: preco,
             url: picture,
             category: category,
-            idRestaurant: params.id
+            idRestaurant: params.id,
+            restaurantName: restaurant.name,
+            restaurantTime: restaurant.deliveryTime,
+            restauranteAddress: restaurant.address,
         } 
         setCart([...cart,obj])
     }
@@ -111,6 +115,7 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
                                 onChangeQuant={onChangeQuant}
                                 sendQuant={sendQuant}
                                 quant={quant}
+                                idRestaurant={params.id}
                             />
                         </div>
                     )  
@@ -120,10 +125,13 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     }
         
     return(
-        <ContainerRestaurantsDetails>
-            <CardRestaurant restaurant={restaurant}/>
-            <div> {renderCategory()} </div>
-        </ContainerRestaurantsDetails>
+        <div>
+            <Header/>
+            <ContainerRestaurantsDetails>
+                <CardRestaurant restaurant={restaurant}/>
+                <div> {renderCategory()} </div>
+            </ContainerRestaurantsDetails>
+        </div>
     )
 }
 

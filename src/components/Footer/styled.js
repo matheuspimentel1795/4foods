@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { borderColor } from '../../constants/colors'
 
 export const Container = styled.div`
-    border-top: 1px solid ${borderColor};
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -14,6 +13,8 @@ export const ContainerFooter = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 5px;
+    border-top: 1px solid ${borderColor};
+    height: 42px;
     
     img{
         margin: 16px;
