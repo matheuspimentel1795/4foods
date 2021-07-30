@@ -30,16 +30,17 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
     changeInfoHeader("Meu Carrinho")
     setLogged(true)
     const {cart,setCart}=useContext(GlobalStateContext)
-    const [payment,setPayment]=useState('')
     const { input, onChangeInput, cleanFields } = useForm({
         paymentMethod:'',
     })
     console.log('cart',cart)
-    const data = useRequestData({},`/restaurants/${1}`)
+    const data = useRequestData({},`/restaurants/${cart.map((x)=>{
+        return x.idRestaurant
+    })}`)
     console.log(data.restaurant)
     const adress = useRequestData([],`/profile/address`)
     const end = adress?.address
-    /*----------------------------- Lógica remover quantidade--------------------------*/
+ /*----------------------------- Lógica remover quantidade--------------------------*/
     const removeQuant = (id) =>{
        const algo= cart.map((x)=>{
             if(x.id===id){
@@ -49,10 +50,11 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
        }).filter((z)=>{
             return z.quantidade>0
        })
-      setCart(algo)
+        setCart(algo)
         console.log('algo',algo)
+        console.log('carrinho',cart)
     }
-
+    console.log('carrinho 2',cart)
 /*----------------------------- Itens Carrinho--------------------------*/
     const list = cart.map((z)=>{
         return (
@@ -86,9 +88,8 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
     }
     let somaWithFrete = soma + data.restaurant?.shipping
     
-
-
     const onSubmitOrder = (event) =>{
+        console.log('oi')
         event.preventDefault()
         const body = {
             'products' : cart.map((a)=>{
@@ -133,6 +134,7 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
         variant="contained"
         color="primary"
         size="small" 
+        type='submit'
       >
         Confirmar
       </Button>
