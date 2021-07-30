@@ -10,18 +10,18 @@ import { goToFeedSearch } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import SearchIcon from "@material-ui/icons/Search";
+
 
 const Feed = () => {
     useProtectedPage()
 
-    const [restaurantList, setRestaurantList] = useState()
     const [isLoading, setIsLoading] = useState(false)
     const list = useRequestData({}, '/restaurants', setIsLoading)
     const [selectedCategory, setSelectedCategory] = useState({
         active: false,
         category: "",
     })
-
 
     const history = useHistory()
 
@@ -65,13 +65,17 @@ const Feed = () => {
             <Header/>
             <Container>
                 <OutlinedInput
+                    className={"search-box"}
                     onClick={() => goToFeedSearch(history)}
+                    inputProps={{ 'aria-label': 'search' }}
+                    placeholder={"  Restaurante"}
+                    startAdornment={<SearchIcon style={{ color: '#808080'}}/>}
                 />
                 <ContainerCategories>
                     {displayCategories}
                 </ContainerCategories>
                 <ContainerList>
-                    {displayList ? displayList : <Loading />}
+                    {isLoading || displayList ? displayList : <Loading />}
                 </ContainerList>
             </Container>
             <Footer/>
