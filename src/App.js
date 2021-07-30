@@ -5,10 +5,12 @@ import GlobalState from './global/GlobalState';
 import Router from './routes/Router'
 
 const App =() => {
+  const [initialPage, setInitialPage] = useState(true)
+
   return (
     <GlobalState>
     <ThemeProvider theme={theme}>
-     <Router/>
+     <Router initialPage={initialPage} setInitialPage={setInitialPage}/>
     </ThemeProvider>
     </GlobalState>
   )

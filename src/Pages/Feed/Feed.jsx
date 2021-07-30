@@ -9,8 +9,9 @@ import { OutlinedInput, Typography } from '@material-ui/core'
 import { goToFeedSearch } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
 
-const Feed = ({ setLogged, changeInfoHeader }) => {
+const Feed = ({ setInitialPage, setLogged, changeInfoHeader }) => {
     useProtectedPage()
+    setInitialPage(false)
     setLogged(true)
     changeInfoHeader("Ifuture")
 
