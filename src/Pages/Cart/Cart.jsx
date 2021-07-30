@@ -101,9 +101,8 @@ const Cart = () => {
     const { input, onChangeInput, cleanFields } = useForm({
         paymentMethod: '',
     })
-    console.log('cart', cart)
     const data = useRequestData({}, `/restaurants/${1}`)
-    console.log(data.restaurant)
+
     const adress = useRequestData([], `/profile/address`)
     const end = adress?.address
     /*----------------------------- Lógica remover quantidade--------------------------*/
@@ -117,7 +116,6 @@ const Cart = () => {
             return z.quantidade > 0
         })
         setCart(algo)
-        console.log('algo', algo)
     }
 
     /*----------------------------- Itens Carrinho--------------------------*/
@@ -145,7 +143,6 @@ const Cart = () => {
     const valor = cart.map((c) => {
         return c.quantidade * c.price
     })
-    console.log(valor)
     let soma = 0.00
     for (let i = 0; i < valor.length; i++) {
         soma = soma + valor[i]
@@ -153,7 +150,6 @@ const Cart = () => {
     let somaWithFrete = soma + cart[0]?.shipping
 
     const onSubmitOrder = (event) => {
-        console.log('oi')
         event.preventDefault()
         const body = {
             'products': cart.map((a) => {

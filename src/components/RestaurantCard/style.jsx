@@ -21,7 +21,7 @@ export const RestaurantImage = styled.img`
     width: 100%;
     height: 8em;
     margin: 0 0 2% 0;
-    object-fit: contain;
+    object-fit: 100%;
     overflow: hidden;
     @media(max-device-width: 414px){
         width: 100%;

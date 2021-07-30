@@ -10,7 +10,7 @@ export const sendLogin = (body, history, cleanFields) =>{
         goToFeed(history)
     })
     .catch((err)=>{
-        console.log(err.response.data.message)
+        alert(err.response.data.message)
     })
 }
 
@@ -22,6 +22,6 @@ export const sendSignUp = (body,history, cleanFields) =>{
         goToAdress(history)
     })
     .catch((err)=>{
-        console.log(err.response.data.message)
+        alert(err.response.data.message)
     })
 }

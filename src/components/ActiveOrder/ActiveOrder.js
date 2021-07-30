@@ -5,7 +5,6 @@ import { ContainerActiveOrder } from './styled'
 
 const ActiveOrder = () => {
     const {ativeOrder} = useContext(GlobalStateContext)
-    console.log('ative order',ativeOrder)
 
     return(
         <div>
