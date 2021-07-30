@@ -5,14 +5,15 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    margin: 64px 0 80px 0;
     .search-box{
         width: 20%;
         margin: 1%;
     }
     @media(max-device-width: 414px){
         .search-box{
-           width: 96%;
-           margin: 2%;
+           width: 90%;
+           margin: 2%
         }  
     }
 `
@@ -44,13 +45,16 @@ export const ContainerRow = styled.div`
     }
 `
 export const ContainerTop = styled.div`
-width: 100%;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-justify-items: center;
-align-items: center;
-border-bottom: 2px solid lightgray;
-button{
-     justify-self:left;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    border-bottom: 2px solid lightgray;
+    button{
+        justify-self:left;
+        }
+    @media(max-device-width: 414px){
+        width: 100%;
     }
 `

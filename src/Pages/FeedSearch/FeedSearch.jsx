@@ -4,12 +4,12 @@ import useProtectedPage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
 import Loading from '../../components/Loading/Loading'
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard'
-import { Container, ContainerList, ContainerRow, ContainerTop } from './style'
+import { Container, ContainerList } from './style'
 import { OutlinedInput, Typography } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+// import IconButton from '@material-ui/core/IconButton';
+// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import SearchIcon from "@material-ui/icons/Search";
 
 
@@ -25,7 +25,7 @@ const FeedSearch = ({ setLogged }) => {
 
     const loadList = useRequestData({}, '/restaurants', setIsLoading)
 
-    const history = useHistory()
+    // const history = useHistory()
 
     const searchResult = input.search && loadList.restaurants?.filter((item) => {
         return item.name.toLowerCase().includes(input.search.toLowerCase())
@@ -40,14 +40,14 @@ const FeedSearch = ({ setLogged }) => {
 
     return (
         <Container>
-            <ContainerTop>
+            {/* <ContainerTop>
                 <IconButton>
                     <ArrowBackIosIcon
                     onClick={() => history.goBack()}
                     style={{ color: '#000000'}}/>
                 </IconButton>
                 <Typography>Busca</Typography>
-            </ContainerTop>
+            </ContainerTop> */}
             <OutlinedInput
                 className={"search-box"}
                 type="text"
