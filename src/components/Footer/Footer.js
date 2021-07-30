@@ -7,7 +7,7 @@ import shoppingCartWhite from '../../assets/shoppingCartWhite.png'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import { goToFeed, goToCarr, goToProfile } from '../../routes/coordinator'
-import {ContainerFooter} from './styled'
+import {Container, ContainerFooter} from './styled'
 import ActiveOrder from '../ActiveOrder/ActiveOrder'
 
 const Footer = () => {
@@ -46,14 +46,14 @@ const Footer = () => {
     }
 
     return(
-        <div>
+        <Container>
             {currentPage === "Home" && <ActiveOrder/>}
             <ContainerFooter>
                 <img src={iconHomePage} alt={"Icone Página Inicial"} onClick={() =>{changeIcon("Home"); goToFeed(history)}}/>
                 <img src={iconShoppingCard} alt={"Icone Carrinho"} onClick={ () =>{changeIcon("Carrinho"); goToCarr(history)}}/>
                 <img src={iconAvatar} alt={"Icone Perfil"} onClick={() =>{changeIcon("Perfil"); goToProfile(history)}}/>
             </ContainerFooter>
-        </div>
+        </Container>
     )
 }
 
