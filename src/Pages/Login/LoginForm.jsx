@@ -5,58 +5,54 @@ import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { sendLogin } from '../../services/user'
 import { useHistory } from 'react-router-dom'
+import Input from '../../components/Input/Input'
 
 const LoginForm = () => {
     const history = useHistory()
 
-    const { input, onChangeInput, cleanFields } = useForm({
+    const { input, onChangeInput, cleanFields, errors, setErrors} = useForm({
         email:'',
         password:'',
     })
 
-    const [emailError, setEmailError] = useState(false)
-    const [passwordError, setPasswordError] = useState(false)
+    const validate = () => {
+        let temp = {}
+        temp.email = input.email===''?'Campo de preenchimento obrigatório':''
+        temp.password = input.password.length>5?'':input.password===''?'Campo de preenchimento obrigatório':'Mínimo de 6 caracteres'
+        setErrors({
+            ...temp
+        })
+        return Object.values(temp).every(x => x == '')
+    }
 
     const onSubmitLogin = (event) =>{
         event.preventDefault()
-        setEmailError(false)
-        setPasswordError(false)
-
-        if(input.email===''){
-            setEmailError(true)
+        if (validate()){
+            sendLogin(input, history, cleanFields)
         }
-
-        if(input.password===''){
-            setPasswordError(true)
-        }
-
-        sendLogin(input, history, cleanFields)
     }
 
     return (
         <div>
             <InputsContainer>
                 <form onSubmit={onSubmitLogin}>
-                    <TextField id="outlined-basic" label="E-mail" variant="outlined"
-                        required 
-                        value={input.email} 
-                        name={'email'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'email'
+                        name='email'
+                        label="E-mail"
+                        value={input.email}
                         placeholder='email@email.com'
-                        margin={'normal'}
-                        fullWidth
-                        {...(emailError && {error: true, helperText:"Insira um e-mail válido"})}
+                        onChange={onChangeInput}
+                        error={errors.email}
                     />
-                    <TextField id="outlined-basic" label="Senha" variant="outlined"
-                        required 
-                        type='password' 
-                        value={input.password} 
-                        name={'password'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type='password'
+                        name='password'
+                        label="Senha"
+                        value={input.password}
                         placeholder='Mínimo 6 caracteres'
-                        margin={'normal'}
-                        fullWidth
-                        {...(passwordError && {error: true, helperText:"Insira uma senha válida"})}
+                        onChange={onChangeInput}
+                        error={errors.password}
                     />
                     <Button variant="contained" color="primary"
                         type={'submit'}
