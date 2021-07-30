@@ -113,6 +113,7 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
                                 onChangeQuant={onChangeQuant}
                                 sendQuant={sendQuant}
                                 quant={quant}
+                                idRestaurant={params.id}
                             />
                         </div>
                     )  

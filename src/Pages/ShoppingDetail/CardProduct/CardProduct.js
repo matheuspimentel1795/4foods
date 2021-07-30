@@ -6,7 +6,7 @@ import { GlobalStateContext } from '../../../global/GlobalStateContext'
 
 
 
-const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
+const CardProduct = ({product, sendQuant, onChangeQuant, quant,idRestaurant}) => {
     const [cardExist, setCardExist] = useState(0)
     const {cart,setCart} = useContext(GlobalStateContext)
 
@@ -50,6 +50,7 @@ const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
                 product={product} 
                 onChangeQuant={onChangeQuant}
                 quant={quant}
+                idRestaurant={idRestaurant}
             /> </ContainerDescription>
             </Card>}
         </ContainerCard>
