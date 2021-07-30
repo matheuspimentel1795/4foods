@@ -18,32 +18,24 @@ import {
 } from '../Pages/export'
 
 
-const Router = ({initialPage,setInitialPage}) => {
-    const [logged, setLogged] = useState(false)
-    const [infoHeader, setInfoHeader] = useState("")
-
-    const changeInfoHeader = (info) => {
-        setInfoHeader(info)
-    }
+const Router = () => {
 
     return (
         <BrowserRouter>
-            {initialPage === false && <Header infoHeader={infoHeader}/>}
             <Switch>
             {/* <Route exact path='/' component ={Splash} /> */}
-                <Route exact path='/' component ={() => <Login setInitialPage={setInitialPage} setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>} />
-                <Route exact path='/cadastro' component={() => <SignUp setInitialPage={setInitialPage} changeInfoHeader={changeInfoHeader}/>}/>
-                <Route exact path='/cadastro-endereco' component={() => <SignUpFormAdress setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
-                <Route exact path='/restaurantes' component={() => <Feed setInitialPage={setInitialPage} setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>} />
-                <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
-                <Route exact path='/perfil' component={() => <Profile setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
-                <Route exact path='/perfil/editar/:name?/:email?/:cpf?' component={() => <EditeProfile setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
+                <Route exact path='/' component ={() => <Login />} />
+                <Route exact path='/cadastro' component={() => <SignUp />}/>
+                <Route exact path='/cadastro-endereco' component={() => <SignUpFormAdress />}/>
+                <Route exact path='/restaurantes' component={() => <Feed/>} />
+                <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail/>}/>
+                <Route exact path='/perfil' component={() => <Profile/>}/>
+                <Route exact path='/perfil/editar/:name?/:email?/:cpf?' component={() => <EditeProfile/>}/>
                 <Route exact path='/perfil/editar-endereco' component={() => 
-                <EditAddress setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
-                <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
-                <Route exact path='/restaurantes/busca' component={() => <FeedSearch setLogged={setLogged} />} />
+                <EditAddress/>}/>
+                <Route exact path='/carrinho' component={() => <Cart/>}/>
+                <Route exact path='/restaurantes/busca' component={() => <FeedSearch />} />
             </Switch>
-            {logged && <Footer infoHeader={infoHeader}/>}
         </BrowserRouter>
     )
 }

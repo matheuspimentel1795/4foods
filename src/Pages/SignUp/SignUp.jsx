@@ -4,15 +4,15 @@ import SignUpform from './SignUpForm'
 import logo from '../../assets/logo-future-eats-red.png'
 import useProtectedPage from '../../hooks/useProtectedPage'
 import SignUpFormAdress from '../SignUpFormAdress/SignUpFormAdress'
+import Header from '../../components/Header/Header'
 
-const SignUp = ({setInitialPage,changeInfoHeader}) =>{
-    changeInfoHeader("Cadastrar")
-    setInitialPage(false)
+const SignUp = () =>{
     /*useProtectedPage()*/
     
     return(
         <div>
-           <ScreenContainer>
+            <Header/>
+            <ScreenContainer>
                <img src={logo}></img>
                 <h3>Cadastrar</h3>
                 <SignUpform />

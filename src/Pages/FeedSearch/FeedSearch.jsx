@@ -10,10 +10,10 @@ import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Header from '../../components/Header/Header'
 
-const FeedSearch = ({ setLogged }) => {
+const FeedSearch = () => {
     useProtectedPage()
-    setLogged(true)
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -37,25 +37,21 @@ const FeedSearch = ({ setLogged }) => {
 
 
     return (
-        <Container>
-            <ContainerRow>
-                <IconButton>
-                    <ArrowBackIosIcon onClick={() => history.goBack()} />
-                </IconButton>
-                <Typography>Busca</Typography>
-                <></>
-            </ContainerRow>
-            <OutlinedInput
-                type="text"
-                onChange={onChangeInput}
-                value={input.search}
-                name={"search"}
-                placeholder={"Restaurante"}
-            />
-            <ContainerList>
-                {isLoading ? <Loading /> : renderResult ? renderResult : <Typography>busque por nome de restaurante</Typography>}
-            </ContainerList>
-        </Container>
+        <div>
+            <Header/>
+            <Container>
+                <OutlinedInput
+                    type="text"
+                    onChange={onChangeInput}
+                    value={input.search}
+                    name={"search"}
+                    placeholder={"Restaurante"}
+                />
+                <ContainerList>
+                    {isLoading ? <Loading /> : renderResult ? renderResult : <Typography>busque por nome de restaurante</Typography>}
+                </ContainerList>
+            </Container>
+        </div>
     )
 }
 export default FeedSearch

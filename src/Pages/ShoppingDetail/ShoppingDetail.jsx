@@ -11,10 +11,10 @@ import CardProduct from './CardProduct/CardProduct'
 import getRestaurant from '../../services/getRestaurant/getRestaurant'
 import Footer from '../../components/Footer/Footer'
 import { ContainerRestaurantsDetails } from './styled'
+import Header from '../../components/Header/Header'
 
 
-const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
-    changeInfoHeader("Restaurante")
+const ShoppingDetail = () =>{
     useProtectedPage()
     
     const [categories, setCategories] = useState([])
@@ -122,10 +122,13 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     }
         
     return(
-        <ContainerRestaurantsDetails>
-            <CardRestaurant restaurant={restaurant}/>
-            <div> {renderCategory()} </div>
-        </ContainerRestaurantsDetails>
+        <div>
+            <Header/>
+            <ContainerRestaurantsDetails>
+                <CardRestaurant restaurant={restaurant}/>
+                <div> {renderCategory()} </div>
+            </ContainerRestaurantsDetails>
+        </div>
     )
 }
 

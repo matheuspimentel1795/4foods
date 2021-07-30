@@ -6,11 +6,10 @@ import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
 import {GlobalStateContext} from '../../global/GlobalStateContext';
+import Header from '../../components/Header/Header'
 
-const EditAddress = ({setLogged, changeInfoHeader}) => {
+const EditAddress = () => {
     const history = useHistory()
-    setLogged(false)
-    changeInfoHeader("Endereço")
     
     const {address} = useContext(GlobalStateContext)
     const { input, onChangeInput, cleanFields } = useForm({
@@ -29,6 +28,7 @@ const EditAddress = ({setLogged, changeInfoHeader}) => {
 
     return (
         <div>
+            <Header/>
             <InputsContainer>
             <form onSubmit={onSubmitFormAdress}>
                     <TextField id="outlined-basic" label="Logradouro" variant="outlined"
