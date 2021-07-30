@@ -15,7 +15,6 @@ const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
             for(const prod of cart) {
                 if(product.id === prod.id){
                     setCardExist(prod.quantidade)
-                    console.log("quanridade prod CARTT", prod.quantidade)
                     break
                 } else {
                     setCardExist(0)
@@ -26,7 +25,7 @@ const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
         }
         
     }
-    console.log("carrinho", cart )
+    
 
     useEffect(() => {
         verificaprodutoCarrinho()

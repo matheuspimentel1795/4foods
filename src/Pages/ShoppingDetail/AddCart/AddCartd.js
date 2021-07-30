@@ -47,13 +47,12 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
           x.quantidade = x.quantidade-1
       }
       return x
- }).filter((z)=>{
+    }).filter((z)=>{
       return z.quantidade>0
- })
-setCart(algo)
-changeButton()
-  console.log('algo',algo)
-  console.log("carrinho", cart)
+    })
+    setCart(algo)
+    changeButton()
+    
   
   }
 
