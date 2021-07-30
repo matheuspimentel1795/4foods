@@ -10,7 +10,8 @@ export default function RestaurantCard({ item }) {
 
     return (
         <Container
-            onClick={() => goToRestaurantDetail(history, id)}>
+            onClick={() => goToRestaurantDetail(history, id)}
+            >
             <RestaurantImage src={logoUrl} />
             <ContainerRow>
                 <Typography color="secondary">{name}</Typography>

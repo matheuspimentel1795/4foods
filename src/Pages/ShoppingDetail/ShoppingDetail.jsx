@@ -59,11 +59,10 @@ const ShoppingDetail = () =>{
             setRestaurant(res.data.restaurant)
             setProducts(res.data.restaurant.products)
             analizeCategories(res.data.restaurant.products)
-            console.log("terminou")
             setIsLoading(false)
                 
         } catch (err){
-            console.log(err.message)
+            alert(err.message)
         }
     }
     

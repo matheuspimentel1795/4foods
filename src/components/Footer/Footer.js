@@ -12,7 +12,6 @@ import ActiveOrder from '../ActiveOrder/ActiveOrder'
 
 const Footer = () => {
     const history = useHistory()
-    console.log(history.location.pathname)
 
     return(
         <Container>
