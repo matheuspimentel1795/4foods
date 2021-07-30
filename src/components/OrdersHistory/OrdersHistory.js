@@ -2,7 +2,6 @@ import React from 'react'
 import useRequestData from '../../hooks/useRequestData'
 import {convertMonth} from '../../functions/functions'
 import {ContainerOrderHistory, ContainerCardOrder} from './styled'
-import Loading from '../Loading/Loading'
 
 const OrdersHistory = () => {
 
@@ -26,7 +25,7 @@ const OrdersHistory = () => {
 
     return(
         <ContainerOrderHistory>
-            {orderHistory.orders ? <div>{allOrder}</div>: <Loading/> }
+            {orderHistory.orders ? <div>{allOrder}</div>: <p>Você não realizou nenhum pedido</p> }
         </ContainerOrderHistory>
     )
 }
