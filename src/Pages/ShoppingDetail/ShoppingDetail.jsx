@@ -1,3 +1,4 @@
+
 import React, { useContext, useState, useEffect }  from 'react'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 import useProtectedPage from '../../hooks/useProtectedPage'
@@ -40,7 +41,8 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
             quantidade: Number(quant),
             price: preco,
             url: picture,
-            category: category
+            category: category,
+            idRestaurant: params.id
         } 
         setCart([...cart,obj])
     }
@@ -52,7 +54,6 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     const tryGetRestaurante = async() => {
         try {
             const res = await getRestaurant(params.id)
-            console.log("res", res)
             setRestaurant(res.data.restaurant)
             setProducts(res.data.restaurant.products)
             analizeCategories(res.data.restaurant.products)
@@ -129,6 +130,7 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
 }
 
 export default ShoppingDetail
+
 
 
 

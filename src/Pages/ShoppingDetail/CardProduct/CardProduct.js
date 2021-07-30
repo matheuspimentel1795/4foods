@@ -11,13 +11,21 @@ const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
     const {cart,setCart} = useContext(GlobalStateContext)
 
     const verificaprodutoCarrinho = () => {
-        for(const prod of cart) {
-            if(product.id === prod.id){
-                setCardExist(prod.quantidade)
-                break
+        if(cart.length > 0){
+            for(const prod of cart) {
+                if(product.id === prod.id){
+                    setCardExist(prod.quantidade)
+                    break
+                } else {
+                    setCardExist(0)
+                }
             }
+        } else {
+            setCardExist(0)
         }
+        
     }
+    
 
     useEffect(() => {
         verificaprodutoCarrinho()

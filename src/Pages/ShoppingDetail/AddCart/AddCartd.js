@@ -30,7 +30,7 @@ const ButtonContainer = styled.div`
 export default function AddCart({sendQuant, product, onChangeQuant, quant}){
   const [open, setOpen] = useState(false);
   const {cart,setCart}=useContext(GlobalStateContext)
-  const [cardExist, setCardExist] = useState(false)
+  const [cardExist, setCardExist] = useState(0)
 
   const popUpClickOpen = () => {
     setOpen(true)
@@ -42,7 +42,20 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
 
   const removeCart = () =>{
     
+    const algo= cart.map((x)=>{
+      if(x.id===product.id){
+          x.quantidade = x.quantidade-1
+      }
+      return x
+    }).filter((z)=>{
+      return z.quantidade>0
+    })
+    setCart(algo)
+    changeButton()
+    
+  
   }
+
 
   const addToCart = () => {
     popUpClose()
@@ -58,9 +71,10 @@ export default function AddCart({sendQuant, product, onChangeQuant, quant}){
   const changeButton = () =>{
     for(const prod of cart) {
       if(product.id === prod.id){
-          setCardExist(true)
+          setCardExist(prod.quantidade)
           break
-      }
+      } 
+      
     }
   }
 
