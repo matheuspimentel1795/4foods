@@ -150,7 +150,7 @@ const Cart = () => {
     for (let i = 0; i < valor.length; i++) {
         soma = soma + valor[i]
     }
-    let somaWithFrete = soma + data.restaurant?.shipping
+    let somaWithFrete = soma + cart[0]?.shipping
 
     const onSubmitOrder = (event) => {
         console.log('oi')
@@ -176,24 +176,27 @@ const Cart = () => {
                     <h3 className='adress-title'>Endereço de entrega</h3>
                     <h3>{end?.street},{end?.number}</h3>
                 </div>
-                {data.restaurant ? <div className='restaurant-address'>
-                    <h3>{data.restaurant?.name}</h3>
-                    <h3 className='restauran-adress-time' >{data.restaurant?.address}</h3>
-                    <h3 className='restauran-adress-time'>{data.restaurant?.deliveryTime} min</h3>
+                {cart.length>0 ? <div className='restaurant-address'>
+                    <h3>{cart[0]?.restaurantName}</h3>
+                    <h3 className='restauran-adress-time' >{cart[0]?.restauranteAddress}</h3>
+                    <h3 className='restauran-adress-time'>{cart[0]?.restaurantTime} min</h3>
                 </div> : <div></div>}
                 <div>
                     {cart.length === 0 ? <h3 className='text'>Carrinho Vazio</h3> : list}
                 </div>
-                <h2 className='frete'>Frete: R$ {data.restaurant?.shipping ? data.restaurant?.shipping : '0'},00 </h2>
+                <h2 className='frete'>Frete: R$ {cart.length>0?cart[0]?.shipping : '0'},00 </h2>
                 <div className='price-container'>
                     <h2>Subtotal  </h2>
                     <h2 className='price'>R${soma === 0 ? soma : somaWithFrete},00</h2>
                 </div>
                 <h2 className='payment'>Forma de Pagamento</h2>
                 <form className='submit-order' onSubmit={onSubmitOrder}>
-                    <div>
-                        {cart.length === 0 ? <h3 className='text'>Carrinho Vazio</h3> : list}
-                    </div>
+                <div>
+                <input value={'money'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
+                    <label >Dinheiro </label> <br></br>
+                    <input value={'creditcard'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
+                    <label>Cartão de Crédito</label>
+                </div>
                     <Button
                         variant="contained"
                         color="primary"
