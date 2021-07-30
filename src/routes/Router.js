@@ -23,8 +23,8 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Switch>
-            {/* <Route exact path='/' component ={Splash} /> */}
-                <Route exact path='/' component ={() => <Login />} />
+                <Route exact path='/' component ={Splash} />
+                <Route exact path='/login' component ={() => <Login />} />
                 <Route exact path='/cadastro' component={() => <SignUp />}/>
                 <Route exact path='/cadastro-endereco' component={() => <SignUpFormAdress />}/>
                 <Route exact path='/restaurantes' component={() => <Feed/>} />
