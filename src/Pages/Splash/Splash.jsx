@@ -1,8 +1,19 @@
 import React from 'react'
+// import Splash from '../../components/Splash/Splash'
+import { useHistory } from 'react-router'
+import { goToLogin } from '../../routes/coordinator'
+import { Container } from './style'
 
 const Splash = () =>{
+
+    const history = useHistory()
+    
+    setTimeout(()=>{
+        goToLogin(history)
+    },3000)
+
     return(
-        <img src='https://cdn.zeplin.io/5dd5ab8e5fb2a0060f81698f/screens/305D536F-3D4B-41C4-9515-0D7E937851D9.png' />
+        <Container/>
     )
 }
 export default Splash

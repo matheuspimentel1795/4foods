@@ -12,7 +12,6 @@ import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import SearchIcon from "@material-ui/icons/Search";
 
-
 const Feed = () => {
     useProtectedPage()
 
