@@ -55,8 +55,9 @@
    font-size: 20px;
 }
 .frete{
-    margin-left: 62%;
+    margin-left: 58%;
     font-family: Roboto;
+    height: 0vh;
 }
 .restaurant-address{
     margin-left: 2%;
