@@ -8,14 +8,15 @@ import { Container, ContainerList } from './style'
 import { OutlinedInput, Typography } from '@material-ui/core'
 // import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
+import Header from '../../components/Header/Header'
 // import IconButton from '@material-ui/core/IconButton';
 // import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import SearchIcon from "@material-ui/icons/Search";
 
 
-const FeedSearch = ({ setLogged }) => {
+
+const FeedSearch = () => {
     useProtectedPage()
-    setLogged(true)
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -39,31 +40,34 @@ const FeedSearch = ({ setLogged }) => {
 
 
     return (
-        <Container>
-            {/* <ContainerTop>
-                <IconButton>
-                    <ArrowBackIosIcon
-                    onClick={() => history.goBack()}
-                    style={{ color: '#000000'}}/>
-                </IconButton>
-                <Typography>Busca</Typography>
-            </ContainerTop> */}
-            <OutlinedInput
-                className={"search-box"}
-                type="text"
-                onChange={onChangeInput}
-                value={input.search}
-                name={"search"}
-                inputProps={{ 'aria-label': 'search' }}
-                placeholder={"  Restaurante"}   
-                startAdornment={<SearchIcon 
-                    style={{ color: '#808080', marginRight:'5%'}}
-                    />}
-            />
-            <ContainerList>
-                {isLoading ? <Loading /> : renderResult ? renderResult : <Typography>busque por nome de restaurante</Typography>}
-            </ContainerList>
-        </Container>
+        <div>
+            <Header/>
+            <Container>
+                {/* <ContainerTop>
+                    <IconButton>
+                        <ArrowBackIosIcon
+                        onClick={() => history.goBack()}
+                        style={{ color: '#000000'}}/>
+                    </IconButton>
+                    <Typography>Busca</Typography>
+                </ContainerTop> */}
+                <OutlinedInput
+                    className={"search-box"}
+                    type="text"
+                    onChange={onChangeInput}
+                    value={input.search}
+                    name={"search"}
+                    inputProps={{ 'aria-label': 'search' }}
+                    placeholder={"  Restaurante"}   
+                    startAdornment={<SearchIcon 
+                        style={{ color: '#808080', marginRight:'5%'}}
+                        />}
+                />
+                <ContainerList>
+                    {isLoading ? <Loading /> : renderResult ? renderResult : <Typography>busque por nome de restaurante</Typography>}
+                </ContainerList>
+            </Container>
+        </div>
     )
 }
 export default FeedSearch

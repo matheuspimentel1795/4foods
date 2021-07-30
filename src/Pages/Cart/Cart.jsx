@@ -7,6 +7,8 @@ import useForm from '../../hooks/useForm'
 import { postPlaceOrder } from '../../services/postServices'
 import './Cart.css'
 import Button from '@material-ui/core/Button';
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -25,10 +27,8 @@ const Imagem = styled.img`
     height: 100%;
 `
 
-const Cart= ({setLogged, changeInfoHeader}) =>{
+const Cart= () =>{
     useProtectedPage()
-    changeInfoHeader("Meu Carrinho")
-    setLogged(true)
     const {cart,setCart}=useContext(GlobalStateContext)
     const { input, onChangeInput, cleanFields } = useForm({
         paymentMethod:'',
@@ -103,43 +103,47 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
         postPlaceOrder(1,body)
         }
     return(
-        <ContainerPage>
-            <div className='adress-container'> 
-                <h3 className='adress-title'>Endereço de entrega</h3>
-                <h3>{end?.street},{end?.number}</h3>
-            </div>
-            <div className='restaurant-address'>
-                <h3>{data.restaurant?.name}</h3>
-                <h3 className='restauran-adress-time' >{data.restaurant?.address}</h3>
-                <h3 className='restauran-adress-time'>{data.restaurant?.deliveryTime} min</h3>
-            </div>
-            <div>
-            {cart.length===0? <h3 className='text'>Carrinho Vazio</h3> :  list }
-            </div>
-            <h2 className='frete'>Frete: R$ {data.restaurant?.shipping},00 </h2>
-           <div className='price-container'>
-                <h2>Subtotal  </h2>
-                <h2 className='price'>R${soma===0? soma: somaWithFrete},00</h2>
-           </div>
-            <h2 className='payment'>Forma de Pagamento</h2>
-            <form className='submit-order' onSubmit={onSubmitOrder}>
-                <div>
-                <input value={'money'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
-                    <label >Dinheiro </label> <br></br>
-                    <input value={'creditcard'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
-                    <label>Cartão de Crédito</label>
+        <div>
+            <Header/>
+            <ContainerPage>
+                <div className='adress-container'> 
+                    <h3 className='adress-title'>Endereço de entrega</h3>
+                    <h3>{end?.street},{end?.number}</h3>
                 </div>
-                <Button
-            variant="contained"
-            color="primary"
-        size="small" 
-        type='submit'
-      >
-        Confirmar
-      </Button>
-            </form>  
-           
-        </ContainerPage>
+                <div className='restaurant-address'>
+                    <h3>{data.restaurant?.name}</h3>
+                    <h3 className='restauran-adress-time' >{data.restaurant?.address}</h3>
+                    <h3 className='restauran-adress-time'>{data.restaurant?.deliveryTime} min</h3>
+                </div>
+                <div>
+                {cart.length===0? <h3 className='text'>Carrinho Vazio</h3> :  list }
+                </div>
+                <h2 className='frete'>Frete: R$ {data.restaurant?.shipping},00 </h2>
+            <div className='price-container'>
+                    <h2>Subtotal  </h2>
+                    <h2 className='price'>R${soma===0? soma: somaWithFrete},00</h2>
+            </div>
+                <h2 className='payment'>Forma de Pagamento</h2>
+                <form className='submit-order' onSubmit={onSubmitOrder}>
+                    <div>
+                    <input value={'money'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
+                        <label >Dinheiro </label> <br></br>
+                        <input value={'creditcard'} name={'paymentMethod'} onChange={onChangeInput} required   type="radio" />
+                        <label>Cartão de Crédito</label>
+                    </div>
+                    <Button
+                variant="contained"
+                color="primary"
+            size="small" 
+            type='submit'
+        >
+            Confirmar
+        </Button>
+                </form>  
+            
+            </ContainerPage>
+            <Footer/>
+        </div>
     )
 }
 export default Cart
