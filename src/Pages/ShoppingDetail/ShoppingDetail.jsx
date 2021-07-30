@@ -41,7 +41,8 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
             quantidade: Number(quant),
             price: preco,
             url: picture,
-            category: category
+            category: category,
+            idRestaurant: params.id
         } 
         setCart([...cart,obj])
     }
