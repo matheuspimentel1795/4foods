@@ -166,7 +166,7 @@ const Cart = () => {
             }),
             paymentMethod: input.paymentMethod
         }
-        postPlaceOrder(1, body)
+        postPlaceOrder(cart[0]?.idRestaurant, body)
     }
     return (
         <div>
