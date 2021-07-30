@@ -12,8 +12,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import { IconButton } from '@material-ui/core'
 
-const Feed = ({ setLogged, changeInfoHeader }) => {
+const Feed = ({ setInitialPage, setLogged, changeInfoHeader }) => {
     useProtectedPage()
+    setInitialPage(false)
     setLogged(true)
     changeInfoHeader("Ifuture")
 

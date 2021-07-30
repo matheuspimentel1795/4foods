@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import { InputsContainer } from './styled'
+import {ContainerForm, InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { putUpdateProfile } from '../../services/putServices'
 
@@ -23,7 +23,7 @@ const EditeProfile = ({setLogged, changeInfoHeader}) => {
     }
 
     return (
-        <div>
+        <ContainerForm>
             <InputsContainer>
 
             <form onSubmit={onSubmitSignUp}>
@@ -64,7 +64,7 @@ const EditeProfile = ({setLogged, changeInfoHeader}) => {
                     </Button>
                 </form>
             </InputsContainer>
-        </div>
+        </ContainerForm>
     )
 }
 

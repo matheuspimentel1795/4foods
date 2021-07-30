@@ -18,7 +18,7 @@ import {
 } from '../Pages/export'
 
 
-const Router = () => {
+const Router = ({initialPage,setInitialPage}) => {
     const [logged, setLogged] = useState(false)
     const [infoHeader, setInfoHeader] = useState("")
 
@@ -28,13 +28,13 @@ const Router = () => {
 
     return (
         <BrowserRouter>
-            <Header infoHeader={infoHeader}/>
+            {initialPage === false && <Header infoHeader={infoHeader}/>}
             <Switch>
             {/* <Route exact path='/' component ={Splash} /> */}
-                <Route exact path='/' component ={() => <Login setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>} />
-                <Route exact path='/cadastro' component={() => <SignUp changeInfoHeader={changeInfoHeader}/>}/>
+                <Route exact path='/' component ={() => <Login setInitialPage={setInitialPage} setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>} />
+                <Route exact path='/cadastro' component={() => <SignUp setInitialPage={setInitialPage} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/cadastro-endereco' component={() => <SignUpFormAdress setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
-                <Route exact path='/restaurantes' component={() => <Feed setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>} />
+                <Route exact path='/restaurantes' component={() => <Feed setInitialPage={setInitialPage} setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>} />
                 <Route exact path='/detalhes-restaurante/:id' component={() => <ShoppingDetail setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/perfil' component={() => <Profile setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/perfil/editar/:name?/:email?/:cpf?' component={() => <EditeProfile setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
@@ -43,7 +43,7 @@ const Router = () => {
                 <Route exact path='/carrinho' component={() => <Cart setLogged={setLogged} changeInfoHeader={changeInfoHeader}/>}/>
                 <Route exact path='/restaurantes/busca' component={() => <FeedSearch setLogged={setLogged} />} />
             </Switch>
-            {logged ? <Footer infoHeader={infoHeader}/>: <></>}
+            {logged && <Footer infoHeader={infoHeader}/>}
         </BrowserRouter>
     )
 }

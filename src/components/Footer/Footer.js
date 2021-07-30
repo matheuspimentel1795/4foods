@@ -15,7 +15,7 @@ const Footer = () => {
     const [iconHomePage, setIconHomePage] =  useState(homepageRed)
     const [iconShoppingCard, setIconShoppingCard] =  useState(shoppingCartWhite)
     const [iconAvatar, setIconAvatar] = useState(avatarWhite)
-    const [currentPage, setCuttentPage] = useState("Home")
+    const [currentPage, setCuttentPage] = useState("")
     
     const changeIcon = (page) => {
         switch(page){
@@ -41,7 +41,6 @@ const Footer = () => {
                 setIconHomePage(homepageRed)
                 setIconShoppingCard(shoppingCartWhite)
                 setIconAvatar(avatarWhite)
-                setCuttentPage("")
                 break;
         }
     }
