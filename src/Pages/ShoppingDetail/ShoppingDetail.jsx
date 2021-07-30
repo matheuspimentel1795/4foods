@@ -45,6 +45,7 @@ const ShoppingDetail = () =>{
             restaurantName: restaurant.name,
             restaurantTime: restaurant.deliveryTime,
             restauranteAddress: restaurant.address,
+            shipping : restaurant.shipping
         } 
         setCart([...cart,obj])
     }
