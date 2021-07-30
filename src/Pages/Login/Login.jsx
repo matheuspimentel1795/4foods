@@ -7,10 +7,10 @@ import useUnProtected from '../../hooks/useUnprotectedPage'
 import { goToSignUp } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
 
-const Login = ({setLogged, changeInfoHeader}) =>{
+const Login = ({setInitialPage, setLogged, changeInfoHeader}) =>{
     useUnProtected()
     const history = useHistory()
-
+    setInitialPage(true)
     setLogged(false)
     changeInfoHeader("")
     // const goToSignUpPage = () => {

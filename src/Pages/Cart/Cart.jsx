@@ -7,20 +7,27 @@ import useForm from '../../hooks/useForm'
 import { postPlaceOrder } from '../../services/postServices'
 import './Cart.css'
 import Button from '@material-ui/core/Button';
-
-const ContainerPage = styled.div`
-    margin-bottom: 80px;
+const HeaderContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
-
+const ContainerPage = styled.div`
+    margin: 64px 0 80px 0;
+    `
 const Container = styled.div`
+    margin: 2%;
     border: 1px solid black;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr ;
 `
 const Imagem = styled.img`
-    width: 20%;
+    width: 100%;
+    height: 100%;
 `
 
 const Cart= ({setLogged, changeInfoHeader}) =>{
     useProtectedPage()
+    changeInfoHeader("Meu Carrinho")
     setLogged(true)
     const {cart,setCart}=useContext(GlobalStateContext)
     const [payment,setPayment]=useState('')
@@ -29,7 +36,7 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
     })
     console.log('cart',cart)
     const data = useRequestData({},`/restaurants/${1}`)
-    console.log(data.restaurant?.shipping)
+    console.log(data.restaurant)
     const adress = useRequestData([],`/profile/address`)
     const end = adress?.address
     /*----------------------------- Lógica remover quantidade--------------------------*/
@@ -50,12 +57,21 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
     const list = cart.map((z)=>{
         return (
             <Container>
-                 <Imagem src={z.url}/> 
+                <div>
+                 <Imagem src={z.url}/>
+                 </div>
+                 <div>
+                     <HeaderContainer>
                 <h2>{z.name}</h2>
+                <h2>Quant: {z.quantidade}</h2>
+                    </HeaderContainer>
                 <h2>{z.description}</h2>
+                <div>
                 <h2>Preço: R$ {z.price*z.quantidade}</h2>
-                <h2>Quantidade: {z.quantidade}</h2>
+                
                 <button onClick={()=>removeQuant(z.id)}>Remover</button>
+                </div>
+                </div>
             </Container>
         )
     })
@@ -92,7 +108,14 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
                 <h3 className='adress-title'>Endereço de entrega</h3>
                 <h3>{end?.street},{end?.number}</h3>
             </div>
+            <div className='restaurant-address'>
+                <h3>{data.restaurant?.name}</h3>
+                <h3 className='restauran-adress-time' >{data.restaurant?.address}</h3>
+                <h3 className='restauran-adress-time'>{data.restaurant?.deliveryTime} min</h3>
+            </div>
+            <div>
             {cart.length===0? <h3 className='text'>Carrinho Vazio</h3> :  list }
+            </div>
             <h2 className='frete'>Frete: R$ {data.restaurant?.shipping},00 </h2>
            <div className='price-container'>
                 <h2>Subtotal  </h2>
@@ -109,10 +132,9 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
                 <Button
         variant="contained"
         color="primary"
-        size="small"
-        
+        size="small" 
       >
-        Save
+        Confirmar
       </Button>
             </form>  
            

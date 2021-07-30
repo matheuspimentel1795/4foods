@@ -1,3 +1,4 @@
+
 import React, { useContext, useState, useEffect }  from 'react'
 import { GlobalStateContext } from '../../global/GlobalStateContext'
 import useProtectedPage from '../../hooks/useProtectedPage'
@@ -9,9 +10,11 @@ import CardRestaurant from './CardRestaurant/CardRestaurant'
 import CardProduct from './CardProduct/CardProduct'
 import getRestaurant from '../../services/getRestaurant/getRestaurant'
 import Footer from '../../components/Footer/Footer'
+import { ContainerRestaurantsDetails } from './styled'
 
 
 const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
+    changeInfoHeader("Restaurante")
     useProtectedPage()
     
     const [categories, setCategories] = useState([])
@@ -119,15 +122,15 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     }
         
     return(
-        <div>
+        <ContainerRestaurantsDetails>
             <CardRestaurant restaurant={restaurant}/>
             <div> {renderCategory()} </div>
-            <Footer />
-        </div>
+        </ContainerRestaurantsDetails>
     )
 }
 
 export default ShoppingDetail
+
 
 
 

@@ -3,6 +3,7 @@ import styled from  'styled-components'
 export const ContainerForm = styled.div`
     display: flex;
     justify-content: center;
+    margin: 64px 0 80px 0;
 `
 
 export const InputsContainer = styled.div`
