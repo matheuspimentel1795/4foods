@@ -11,7 +11,9 @@ const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
 `
-
+const ContainerPage = styled.div`
+    margin: 64px 0 80px 0;
+    `
 const Container = styled.div`
     margin: 2%;
     border: 1px solid black;
@@ -25,6 +27,7 @@ const Imagem = styled.img`
 
 const Cart= ({setLogged, changeInfoHeader}) =>{
     useProtectedPage()
+    changeInfoHeader("Meu Carrinho")
     setLogged(true)
     const {cart,setCart}=useContext(GlobalStateContext)
     const [payment,setPayment]=useState('')
@@ -100,7 +103,7 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
         postPlaceOrder(1,body)
         }
     return(
-        <div>
+        <ContainerPage>
             <div className='adress-container'> 
                 <h3 className='adress-title'>Endereço de entrega</h3>
                 <h3>{end?.street},{end?.number}</h3>
@@ -135,7 +138,7 @@ const Cart= ({setLogged, changeInfoHeader}) =>{
       </Button>
             </form>  
            
-        </div>
+        </ContainerPage>
     )
 }
 export default Cart
