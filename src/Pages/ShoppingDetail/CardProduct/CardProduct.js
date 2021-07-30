@@ -4,9 +4,7 @@ import {Card, Img, PName, PDescription,
 import AddCart from '../AddCart/AddCartd'
 import { GlobalStateContext } from '../../../global/GlobalStateContext'
 
-
-
-const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
+const CardProduct = ({product, sendQuant, onChangeQuant, quant,idRestaurant}) => {
     const [cardExist, setCardExist] = useState(0)
     const {cart,setCart} = useContext(GlobalStateContext)
 
@@ -23,10 +21,7 @@ const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
         } else {
             setCardExist(0)
         }
-        
     }
-    
-
     useEffect(() => {
         verificaprodutoCarrinho()
     }, [cart])
@@ -39,7 +34,6 @@ const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
                 <ContainerDescription>
                     <Text>
                         <PName> {product.name} </PName>
-                        
                         {cardExist ? 
                             <p> {cardExist}</p>
                         : <></>}</Text>
@@ -50,6 +44,7 @@ const CardProduct = ({product, sendQuant, onChangeQuant, quant}) => {
                 product={product} 
                 onChangeQuant={onChangeQuant}
                 quant={quant}
+                idRestaurant={idRestaurant}
             /> </ContainerDescription>
             </Card>}
         </ContainerCard>
