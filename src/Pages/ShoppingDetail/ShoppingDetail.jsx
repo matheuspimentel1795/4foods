@@ -54,7 +54,6 @@ const ShoppingDetail = ({setLogged, changeInfoHeader}) =>{
     const tryGetRestaurante = async() => {
         try {
             const res = await getRestaurant(params.id)
-            console.log("res", res)
             setRestaurant(res.data.restaurant)
             setProducts(res.data.restaurant.products)
             analizeCategories(res.data.restaurant.products)
