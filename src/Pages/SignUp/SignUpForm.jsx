@@ -5,6 +5,7 @@ import useForm from '../../hooks/useForm'
 import {  sendSignUp } from '../../services/user'
 import { useHistory } from 'react-router-dom'
 import Input from '../../components/Input/Input'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 
 const SignUpForm = () => {
     const history = useHistory()
@@ -85,6 +86,9 @@ const SignUpForm = () => {
                         placeholder='Confirme a senha anterior'
                         onChange={onChangeInput}
                         error={errors.passwordValidation}
+                    />
+                     <ErrorMessage
+                        errorMsg={span}
                     />
                     <Button variant="contained" color="primary"
                         type={'submit'}

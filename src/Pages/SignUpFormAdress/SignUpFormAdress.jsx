@@ -6,6 +6,7 @@ import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
 import Input from '../../components/Input/Input'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 
 const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
     const history = useHistory()
@@ -99,6 +100,9 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
                         placeholder='Estado'
                         onChange={onChangeInput}
                         error={errors.state}
+                    />
+                     <ErrorMessage
+                        errorMsg={span}
                     />
                     <Button variant="contained" color="primary"
                         type={'submit'}

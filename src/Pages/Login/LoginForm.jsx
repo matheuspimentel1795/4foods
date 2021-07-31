@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { InputsContainer, Span } from './styled'
+import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { sendLogin } from '../../services/user'
 import { useHistory } from 'react-router-dom'
