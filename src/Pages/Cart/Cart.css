@@ -1,12 +1,68 @@
-*{
-    padding: 0%;
-}
+
+
 .adress-container{
     background-color: #eeeeee;
-    width: 100%;
+    width: 96%;
     height: 12vh;
     margin-left: 0%;
-    padding: 3%;
+    padding: 2%;
     font-family: Roboto;
-    font-size: 1rem;
+    font-size: 100%;
+}
+.adress-title{
+  letter-spacing: -0.39px;
+  color:grey;
+}
+.text{
+    text-align: center;
+}
+.price-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+}
+.price{
+    color: red
+}
+.payment{
+    border-bottom: 1px solid black;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-family: Roboto;
+}
+.submit-order{
+    height: 33vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.submit-order input{
+    margin: 2%;
+}
+.submit-order button{
+    padding: 5%;
+    border-radius: 10px;
+    background-color: #e8222e;
+    width: 96%;
+    margin-left: 2%;
+    margin-bottom: 5%;
+    font-family: Roboto;
+    font-size: 20px;
+    color: black;
+
+}
+.submit-order label{
+    font-family: Roboto;
+   font-size: 20px;
+}
+.frete{
+    margin-left: 58%;
+    font-family: Roboto;
+    height: 0vh;
+}
+.restaurant-address{
+    margin-left: 2%;
+}
+.restauran-adress-time{
+    color: grey;
 }

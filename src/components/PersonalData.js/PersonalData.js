@@ -1,30 +1,31 @@
-import React, {useState}  from 'react'
+import React, { useContext }  from 'react'
 import useProtectedPage from '../../hooks/useProtectedPage'
-import useRequestData from '../../hooks/useRequestData'
 import editPen from '../../assets/editPen.png'
 import {goToEditeProfile} from '../../routes/coordinator'
 import { useHistory } from 'react-router'
 import {ContainerPersonalData} from './styled'
+import Loading from '../Loading/Loading'
+import { GlobalStateContext } from '../../global/GlobalStateContext'
 
 
 const PersonalData = () => {
     useProtectedPage()
     const history = useHistory()
-    const [isLoading, setIsLoading] = useState(false)
 
-    const data = useRequestData([], "/profile")
+    const {dataProfile} = useContext(GlobalStateContext)
+
     return(
         <ContainerPersonalData>
-            {data.user ? <div>
-                <div id={"name"}>
+            {dataProfile.user ? <div>
+                <div id={"personalData"}>
                     <div>
-                        <p>{data.user.name}</p>
-                        <p>{data.user.email}</p>
-                        <p>{data.user.cpf}</p>
+                        <p id={"name"}>{dataProfile.user.name}</p>
+                        <p id={"email"}>{dataProfile.user.email}</p>
+                        <p id={"cpf"}>{dataProfile.user.cpf}</p>
                     </div>
-                    <img src={editPen} alt={"Caneta de editar"} onClick={() => goToEditeProfile(history,data.user.name, data.user.email, data.user.cpf)}/>
+                    <img src={editPen} alt={"Caneta de editar"} onClick={() => goToEditeProfile(history)}/>
                 </div>
-            </div>: <></>}
+            </div>: <Loading/>}
             
 
         </ContainerPersonalData>

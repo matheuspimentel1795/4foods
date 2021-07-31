@@ -1,5 +1,5 @@
 export const goToLogin = (history) =>{
-    history.push('/')
+    history.push('/login')
 } 
 export const goToSignUp = (history) =>{
     history.push('/cadastro')
@@ -14,8 +14,12 @@ export const goToProfile = (history) =>{
     history.push('/perfil')
 }
 
-export const goToEditeProfile = (history, name, email, cpf) =>{
-    history.push(`/perfil/editar/${name}/${email}/${cpf}`)
+export const goToEditeProfile = (history) =>{
+    history.push(`/perfil/editar/`)
+} 
+
+export const goToEditAdress = (history) =>{
+    history.push(`/perfil/editar-endereco`)
 } 
 
 export const goToCarr = (history) =>{

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { borderColor } from '../../constants/colors'
 
 export const ContainerHeader = styled.div`
     display: grid;
@@ -6,13 +7,20 @@ export const ContainerHeader = styled.div`
     align-items: center;
     justify-items: center;
     text-align: center;
+    border-bottom: 1px solid ${borderColor};
+    margin-bottom: 8px;
+    position: fixed;
+    top: 0;
+    z-index:10;
+    width: 100%;
+    background-color: white;
 
     p{
         align-self: center;
     }
 
     img{
-        width: 50px;
-        height: 50px;
+        width: 36px;
+        height: 36px;
     }
 `

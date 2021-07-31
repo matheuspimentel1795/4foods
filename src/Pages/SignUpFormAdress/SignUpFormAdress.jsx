@@ -1,14 +1,15 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { InputsContainer } from './styled'
+import {ContainerForm, InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
 import Input from '../../components/Input/Input'
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
+import Header from '../../components/Header/Header'
 
-const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
+const SignUpFormAdress = () => {
     const history = useHistory()
     setLogged(false)
     changeInfoHeader("Endereço")
@@ -45,6 +46,7 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
     
     return (
         <div>
+            <Header />
             <InputsContainer>
             <form onSubmit={onSubmitFormAdress}>
                     <Input
@@ -112,7 +114,7 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
                     Salvar
                     </Button>
                 </form>
-            </InputsContainer>
+            </InputsContainer>   
         </div>
     )
 }

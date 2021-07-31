@@ -1,11 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import useRequestData from '../../hooks/useRequestData'
 import {convertMonth} from '../../functions/functions'
 import {ContainerOrderHistory, ContainerCardOrder} from './styled'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 const OrdersHistory = () => {
-    const [isLoading, setIsLoading] = useState(false)
 
     const orderHistory = useRequestData([],"/orders/history")
 
@@ -20,17 +18,14 @@ const OrdersHistory = () => {
             <ContainerCardOrder key={index}>
                 <p id={"nameRestaurant"}>{order.restaurantName}</p>
                 <p id={"date"}>{date}</p>
-                <p id={"subtotal"}>SUBTOTAL: R$ {order.totalPrice.toFixed(2)}</p>
+                <p id={"subtotal"}>SUBTOTAL: R$ {order.totalPrice.toFixed(2).replace(".",",")}</p>
             </ContainerCardOrder>
         )
     })
 
     return(
         <ContainerOrderHistory>
-            <p>Histórico de Pedidos</p>
-            <hr/>
-            {isLoading? <CircularProgress color={"inherit"} size={24}/>: <div>{allOrder}</div>}
-            
+            {orderHistory.orders ? <div>{allOrder}</div>: <p>Você não realizou nenhum pedido</p> }
         </ContainerOrderHistory>
     )
 }

@@ -13,6 +13,7 @@ export const ScreenContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100vw;
+    /* margin: 64px 0 80px 0; */
 `
 
 export const InputsContainer = styled.div`

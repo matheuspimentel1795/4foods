@@ -5,6 +5,7 @@ import GlobalState from './global/GlobalState';
 import Router from './routes/Router'
 
 const App =() => {
+
   return (
     <GlobalState>
     <ThemeProvider theme={theme}>
