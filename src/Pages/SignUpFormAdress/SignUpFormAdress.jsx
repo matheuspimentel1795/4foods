@@ -5,12 +5,13 @@ import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { useHistory } from 'react-router-dom'
 import { putAddAdress } from '../../services/putServices'
+import Input from '../../components/Input/Input'
 
 const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
     const history = useHistory()
     setLogged(false)
     changeInfoHeader("Endereço")
-    const { input, onChangeInput, cleanFields } = useForm({
+    const { input, onChangeInput, cleanFields, errors, setErrors, span, setSpan } = useForm({
         street:'',
         number:'',
         neighbourhood:'',
@@ -18,70 +19,86 @@ const SignUpFormAdress = ({setLogged, changeInfoHeader}) => {
         state: '',
         complement:''
     })
+
+    const validate = () => {
+        let temp = {}
+        temp.street = input.street===''?'Campo de preenchimento obrigatório':''
+        temp.number = input.number===''?'Campo de preenchimento obrigatório':''
+        temp.neighbourhood = input.neighbourhood===''?'Campo de preenchimento obrigatório':''
+        temp.city = input.city===''?'Campo de preenchimento obrigatório':''
+        temp.state = input.state===''?'Campo de preenchimento obrigatório':''
+        temp.complement = input.complement===''?'Campo de preenchimento obrigatório':''
+        
+        setErrors({
+            ...temp
+        })
+        return Object.values(temp).every(x => x == '')
+    }
     
     const onSubmitFormAdress = (event) =>{
-        console.log('oi')
         event.preventDefault()
-        putAddAdress(input,history,cleanFields)
+        if (validate()){
+            putAddAdress(input,history,cleanFields, setSpan)
+        }
     }
-
+    
     return (
         <div>
             <InputsContainer>
             <form onSubmit={onSubmitFormAdress}>
-                    <TextField id="outlined-basic" label="Logradouro" variant="outlined"
-                        required 
-                        value={input.street} 
-                        name={'street'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'text'
+                        name='street'
+                        label="Logradouro*"
+                        value={input.street}
                         placeholder='Rua / Av.'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.street}
                     />
-                    <TextField id="outlined-basic" label="Número" variant="outlined"
-                        required 
-                        value={input.number} 
-                        name={'number'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'text'
+                        name='name'
+                        label="Número*"
+                        value={input.number}
                         placeholder='Número'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.number}
                     />
-                    <TextField id="outlined-basic" label="Complemento" variant="outlined"
-                        required 
-                        value={input.complement} 
-                        name={'complement'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'text'
+                        name='complement'
+                        label="Complemento*"
+                        value={input.complement}
                         placeholder='Apto. /Bloco'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.complement}
                     />
-                    <TextField id="outlined-basic" label="Bairro" variant="outlined"
-                        required 
-                        value={input.neighbourhood} 
-                        name={'neighbourhood'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'text'
+                        name='neighbourhood'
+                        label="Bairro*"
+                        value={input.neighbourhood}
                         placeholder='Bairro'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.neighbourhood}
                     />
-                    <TextField id="outlined-basic" label="Cidade" variant="outlined"
-                        required 
-                        value={input.city} 
-                        name={'city'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'text'
+                        name='city'
+                        label="Cidade*"
+                        value={input.city}
                         placeholder='Cidade'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.city}
                     />
-                    <TextField id="outlined-basic" label="Estado" variant="outlined"
-                        required 
-                        value={input.state} 
-                        name={'state'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'text'
+                        name='state'
+                        label="Estado*"
+                        value={input.state}
                         placeholder='Estado'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.state}
                     />
                     <Button variant="contained" color="primary"
                         type={'submit'}

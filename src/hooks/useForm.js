@@ -14,7 +14,7 @@ const useForm = (initialState) => {
   const cleanFields = () => {
     setForm(initialState);
   }
-  console.log(errors)
+  
   return { input, onChangeInput, cleanFields, errors, setErrors, span, setSpan };
 }
 
