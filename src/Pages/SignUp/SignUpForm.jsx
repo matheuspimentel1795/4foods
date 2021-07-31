@@ -5,19 +5,32 @@ import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import {  sendSignUp } from '../../services/user'
 import { useHistory } from 'react-router-dom'
+import Input from '../../components/Input/Input'
 
 const SignUpForm = () => {
     const history = useHistory()
-    const { input, onChangeInput, cleanFields } = useForm({
+    const { input, onChangeInput, cleanFields, errors, setErrors } = useForm({
         name: '',
         email:'',
         cpf:'',
         password:''
     })
     
+    const validate = () => {
+        let temp = {}
+        temp.email = input.email===''?'Campo de preenchimento obrigatório':''
+        temp.password = input.password.length>5?'':input.password===''?'Campo de preenchimento obrigatório':'Mínimo de 6 caracteres'
+        setErrors({
+            ...temp
+        })
+        return Object.values(temp).every(x => x == '')
+    }
+    
     const onSubmitSignUp = (event) =>{
         event.preventDefault()
-        sendSignUp(input,history,cleanFields)
+        if (validate()){
+            sendSignUp(input,history,cleanFields)
+        }
     }
 
     return (
@@ -25,6 +38,15 @@ const SignUpForm = () => {
             <InputsContainer>
 
             <form onSubmit={onSubmitSignUp}>
+                    <Input
+                        type= 'email'
+                        name='email'
+                        label="E-mail"
+                        value={input.email}
+                        placeholder='email@email.com'
+                        onChange={onChangeInput}
+                        error={errors.email}
+                    />
                     <TextField id="outlined-basic" label="Nome" variant="outlined"
                         required 
                         value={input.name} 

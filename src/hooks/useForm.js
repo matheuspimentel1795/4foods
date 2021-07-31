@@ -4,6 +4,7 @@ const useForm = (initialState) => {
 
   const [input, setForm] = useState(initialState)
   const [errors, setErrors] = useState({})
+  const [span, setSpan] = useState('')
   
   const onChangeInput = (event) => {
     const { name, value } = event.target;
@@ -14,7 +15,7 @@ const useForm = (initialState) => {
     setForm(initialState);
   }
   console.log(errors)
-  return { input, onChangeInput, cleanFields, errors, setErrors };
+  return { input, onChangeInput, cleanFields, errors, setErrors, span, setSpan };
 }
 
 export default useForm;

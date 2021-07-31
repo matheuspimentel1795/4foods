@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import TextField from '@material-ui/core/TextField'
+import React from 'react'
 import Button from '@material-ui/core/Button'
-import { InputsContainer } from './styled'
+import { InputsContainer, Span } from './styled'
 import useForm from '../../hooks/useForm'
 import { sendLogin } from '../../services/user'
 import { useHistory } from 'react-router-dom'
 import Input from '../../components/Input/Input'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 
 const LoginForm = () => {
     const history = useHistory()
 
-    const { input, onChangeInput, cleanFields, errors, setErrors} = useForm({
+    const { input, onChangeInput, cleanFields, errors, setErrors, span, setSpan} = useForm({
         email:'',
         password:'',
     })
@@ -28,7 +28,7 @@ const LoginForm = () => {
     const onSubmitLogin = (event) =>{
         event.preventDefault()
         if (validate()){
-            sendLogin(input, history, cleanFields)
+            sendLogin(input, history, cleanFields, setSpan)
         }
     }
 
@@ -53,6 +53,9 @@ const LoginForm = () => {
                         placeholder='Mínimo 6 caracteres'
                         onChange={onChangeInput}
                         error={errors.password}
+                    />
+                    <ErrorMessage
+                        errorMsg={span}
                     />
                     <Button variant="contained" color="primary"
                         type={'submit'}
