@@ -1,4 +1,5 @@
-import React from 'react'
+
+import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
@@ -39,24 +40,26 @@ const LoginForm = () => {
                     <Input
                         type= 'email'
                         name='email'
-                        label="E-mail"
+                        label="E-mail*"
                         value={input.email}
                         placeholder='email@email.com'
                         onChange={onChangeInput}
                         error={errors.email}
                     />
                     <Input
-                        type='password'
                         name='password'
-                        label="Senha"
+                        label="Senha*"
                         value={input.password}
                         placeholder='Mínimo 6 caracteres'
                         onChange={onChangeInput}
                         error={errors.password}
+                        password={true}
                     />
+                 
                     <ErrorMessage
                         errorMsg={span}
                     />
+                    
                     <Button variant="contained" color="primary"
                         type={'submit'}
                         fullWidth
@@ -65,6 +68,8 @@ const LoginForm = () => {
                     Entrar
                     </Button>
                 </form>
+
+
             </InputsContainer>
         </div>
     )
