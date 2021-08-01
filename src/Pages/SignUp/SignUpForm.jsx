@@ -1,78 +1,94 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { InputsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import {  sendSignUp } from '../../services/user'
 import { useHistory } from 'react-router-dom'
+import Input from '../../components/Input/Input'
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 
 const SignUpForm = () => {
     const history = useHistory()
-    const { input, onChangeInput, cleanFields } = useForm({
+    const { input, onChangeInput, cleanFields, errors, setErrors, span, setSpan } = useForm({
         name: '',
         email:'',
         cpf:'',
-        password:''
+        password:'',
+        passwordValidation:''
     })
+    
+    const validate = () => {
+        let temp = {}
+        temp.name = input.name===''?'Campo de preenchimento obrigatório':''
+        temp.email = input.email===''?'Campo de preenchimento obrigatório':''
+        temp.cpf = input.cpf===''?'Campo de preenchimento obrigatório':''
+        temp.password = input.password.length>5?'':input.password===''?'Campo de preenchimento obrigatório':'Mínimo de 6 caracteres'
+        temp.passwordValidation = input.passwordValidation===''?'Campo de preenchimento obrigatório':''
+        //input.passwordValidation.length>5?input.passwordValidation==!input.password?'As senhas informadas são diferentes':'':''
+        setErrors({
+            ...temp
+        })
+        return Object.values(temp).every(x => x == '')
+    }
     
     const onSubmitSignUp = (event) =>{
         event.preventDefault()
-        sendSignUp(input,history,cleanFields)
+        if (validate()){
+            sendSignUp(input,history,cleanFields, setSpan)
+        }
     }
 
     return (
         <div>
             <InputsContainer>
-
-            <form onSubmit={onSubmitSignUp}>
-                    <TextField id="outlined-basic" label="Nome" variant="outlined"
-                        required 
-                        value={input.name} 
-                        name={'name'} 
-                        onChange={onChangeInput} 
+                <form onSubmit={onSubmitSignUp}>
+                    <Input
+                        type= 'text'
+                        name='name'
+                        label="Nome*"
+                        value={input.name}
                         placeholder='Nome e sobrenome'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.name}
                     />
-                    <TextField id="outlined-basic" label="E-mail" variant="outlined"
-                        required 
-                        type='email' 
-                        value={input.email} 
-                        name={'email'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'email'
+                        name='email'
+                        label="E-mail*"
+                        value={input.email}
                         placeholder='email@email.com'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.email}
                     />
-                    <TextField id="outlined-basic" label="CPF" variant="outlined"
-                        required 
-                        value={input.cpf} 
-                        name={'cpf'} 
-                        onChange={onChangeInput} 
-                        placeholder='000.000.000-0'
-                        inputProps={{pattern:"([0-9]{2}[.]?[0-9]{3}[.[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.][0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})",}}
-                        margin={'normal'}
-                        fullWidth
+                    <Input
+                        type= 'text'
+                        name='cpf'
+                        label="CPF*"
+                        value={input.cpf}
+                        placeholder='000.000.000-00'
+                        onChange={onChangeInput}
+                        error={errors.cpf}
                     />
-                    <TextField id="outlined-basic" label="Senha" variant="outlined"
-                        required 
-                        type='password' 
-                        value={input.password} 
-                        name={'password'} 
-                        onChange={onChangeInput} 
+                    <Input
+                        type= 'password'
+                        name='password'
+                        label="Senha*"
+                        value={input.password}
                         placeholder='Mínimo 6 caracteres'
-                        margin={'normal'}
-                        fullWidth
+                        onChange={onChangeInput}
+                        error={errors.password}
                     />
-                    <TextField id="outlined-basic" label="Confirmar" variant="outlined"
-                        required 
-                        type='password' 
-                        value={input.passwordValidation} 
-                        name={'passwordValidation'} 
-                        onChange={onChangeInput} 
-                        placeholder='Mínimo 6 caracteres'
-                        margin={'normal'}
-                        fullWidth
+                    <Input
+                        type= 'password'
+                        name='passwordValidation'
+                        label="Confirmar*"
+                        value={input.passwordValidation}
+                        placeholder='Confirme a senha anterior'
+                        onChange={onChangeInput}
+                        error={errors.passwordValidation}
+                    />
+                     <ErrorMessage
+                        errorMsg={span}
                     />
                     <Button variant="contained" color="primary"
                         type={'submit'}
