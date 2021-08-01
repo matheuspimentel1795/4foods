@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import { InputsContainer } from './styled'
@@ -70,13 +71,13 @@ const SignUpForm = () => {
                         error={errors.cpf}
                     />
                     <Input
-                        type= 'password'
                         name='password'
                         label="Senha*"
                         value={input.password}
                         placeholder='Mínimo 6 caracteres'
                         onChange={onChangeInput}
                         error={errors.password}
+                        password={true}
                     />
                     <Input
                         type= 'password'
@@ -86,6 +87,7 @@ const SignUpForm = () => {
                         placeholder='Confirme a senha anterior'
                         onChange={onChangeInput}
                         error={errors.passwordValidation}
+                        password={true}
                     />
                      <ErrorMessage
                         errorMsg={span}
