@@ -7,6 +7,7 @@ import useUnProtected from '../../hooks/useUnprotectedPage'
 import { goToSignUp } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
 import Header from '../../components/Header/Header'
+import Password, {InputAdornments} from '../../components/password/password'
 
 const Login = () =>{
     useUnProtected()
@@ -30,6 +31,7 @@ const Login = () =>{
                     >
                     Não possui cadastro? Clique aqui
                     </Button>
+                    <Password/>
                 </SignUpButtonContainer>
             </ScreenContainer>
         </div>
